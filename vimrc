@@ -81,6 +81,10 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'KeitaNakamura/tex-conceal.vim'
 Plugin 'vim-latex/vimtex'
 
+" for git
+Plugin 'tpope/vim-fugitive'
+
+
 " 插件列表结束
 call vundle#end()
 filetype plugin indent on
@@ -95,34 +99,27 @@ call dirsettings#Install()
 filetype on 
 " 根据侦测到的不同类型加载对应的插件
 filetype plugin on
-
 "其他。搜索、vim 命令补全等设置：
-
 " 开启实时搜索功能
 set incsearch
 " 搜索时大小写不敏感
 set ignorecase
 " set spell
-
 " vim 自身命令行模式智能补全
 set wildmenu
-
 " sensitive for lower upper letters
 " set smartcase
 set autoread
 " 自适应不同语言的智能缩进
 filetype indent on
-
 "下面两行在进行编写代码时，在格式对起上很有用；
 "第一行，vim使用自动对起，也就是把当前行的对起格式应用到下一行；
 "第二行，依据上面的对起格式，智能的选择对起方式，对于类似C语言编
 "写上很有用
 set autoindent
 set smartindent
-
 "支持C/C++的缩进
 set cin
-
 " 将制表符扩展为空格
 set expandtab
 " 设置编辑时制表符占用空格数
@@ -131,8 +128,6 @@ set tabstop=2
 set shiftwidth=2
 " 让 vim 把连续数量的空格视为一个制表符
 set softtabstop=2
-
-
 "" most used colorscheme
 " colorscheme evening
 " set t_Co=256
@@ -149,8 +144,6 @@ colorscheme base16-oceanicnext
 
 ""set fontsize
 set guifont=Monospace\ 12
-
-
 syntax enable
 syntax on           " 语法高亮  
 
@@ -159,9 +152,6 @@ set laststatus=2    " 启动显示状态行(1),总是显示状态行(2)
 set cursorline
 "列高亮，与函数列表有冲突
 set cursorcolumn  
-
-
-
 
 " 去掉输入错误的提示声音
 ""set noeb
@@ -191,7 +181,6 @@ set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 "let g:Powerline_symbols='compatible'
 ""let g:Powerline_symbols = 'fancy'
 "let g:Powerline_colorscheme = 'solarized256'
-
 
 
 " 保存全局变量
@@ -235,14 +224,12 @@ filetype indent on
 "共享剪贴板  
 set clipboard+=unnamed
 
-
 ""-------------------new added----------------"
 
 " set some context
 set scrolloff=1
 " enable increamental search
 set incsearch
-
 set syn=auto
 set showmatch
 
@@ -291,7 +278,6 @@ vmap <C-c> "+yi
 vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <C-r><C-o>+
-
 
 
 """""""""""Indent Guides"""""""""""""""""""""
