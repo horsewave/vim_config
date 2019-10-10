@@ -1,0 +1,23 @@
+# This file contains snippets that are always defined. I personally
+# have snippets for signatures and often needed texts
+
+# sligthly lower priority than everything else since specialized versions
+# should overwrite. The user needs to adjust her priority in her snippets to
+# ~-55 so that other filetypes will still overwrite.
+priority -100
+
+
+# my information
+snippet myinfo
+---------------
+Description:${1:write your Description}
+Editor:${2:Bo Ma}
+date:${3:`date +%Y/%m/%d` }
+Email:${4:mabo@ihep.ac.cn}
+Tel:${5:010-88235869}
+Cell:${6:15210606357}
+
+Version:${7:v1.0}
+---------------
+$0
+endsnippet
