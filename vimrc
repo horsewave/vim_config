@@ -119,29 +119,6 @@ set shiftwidth=2
 " 让 vim 把连续数量的空格视为一个制表符
 set softtabstop=2
 
-"设置折叠模式
-set foldcolumn=4
-"光标遇到折叠，折叠就打开
-"set foldopen=all
-"移开折叠时自动关闭折叠
-"set foldclose=all
-"zf zo zc zd zr zm zR zM zn zi zN
-"依缩进折叠
-"   manual  手工定义折叠
-"   indent  更多的缩进表示更高级别的折叠
-"   expr    用表达式来定义折叠
-"   syntax  用语法高亮来定义折叠
-"   diff    对没有更改的文本进行折叠
-"   marker  对文中的标志折叠
-"set =syntax is conflict to neocomplete.
-"set foldmethod=syntax
-set foldmethod=indent
-"启动时不要自动折叠代码
-""set foldlevel=100
-set nofoldenable
-"依标记折叠
-"set foldmethod=marker
-
 
 "" most used colorscheme
 " colorscheme evening
@@ -750,3 +727,23 @@ let g:tex_conceal='abdmg'"
 " 
 " If you would like to have indent guides enabled by default, you can add the following to your ~/.vimrc:
 " let g:indent_guides_enable_on_vim_startup = 1
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  Konfekt/FastFold "
+" 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap zuz <Plug>(FastFoldUpdate)
+let g:fastfold_savehook = 1
+let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
+let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+
+let g:markdown_folding = 1
+let g:tex_fold_enabled = 1
+let g:vimsyn_folding = 'af'
+" If you prefer that folds are only updated manually but not when saving the buffer: 
+let g:fastfold_savehook = 0
+" If you prefer that folds are not updated whenever you close or open folds by a standard keystroke such as zx,zo or zc,
+let g:fastfold_fold_command_suffixes = []
+" FastFold is by default enabled for files that have more than a certain number of lines, by default set to 200.
+" To change this number, for example, to enable FastFold independent of the number of lines of a file
+" let g:fastfold_minlines = 0
