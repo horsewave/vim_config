@@ -17,15 +17,15 @@ def math():
 		return False
 endglobal
 
-snippet template "Basic template" b
+snippet la_temp-art "Basic template" b
+
 \documentclass[a4paper]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
-\usepackage[dutch]{babel}
 \usepackage{amsmath, amssymb}
-
+\usepackage{xcolor}
 
 % figure support
 \usepackage{import}
@@ -34,16 +34,29 @@ snippet template "Basic template" b
 \usepackage{pdfpages}
 \usepackage{transparent}
 \newcommand{\incfig}[1]{%
-	\def\svgwidth{\columnwidth}
-	\import{./figures/}{#1.pdf_tex}
+\def\svgwidth{\columnwidth}
+\import{./figures/}{#1.pdf}
 }
 
 \pdfsuppresswarningpagegroup=1
 
+\title{$1}
+\author{Bo Ma}
+
 \begin{document}
-	$0
+
+\maketitle
+%\begin{abstract}
+
+%\end{abstract}
+$0
+
 \end{document}
+
+
 endsnippet
+
+
 
 snippet beg "begin{} / end{}" bA
 \\begin{$1}
@@ -97,6 +110,20 @@ endsnippet
 snippet pac "Package" b
 \usepackage[${1:options}]{${2:package}}$0
 endsnippet
+
+snippet fr "red font" 
+{\color{red}${1:${VISUAL}}}
+endsnippet
+
+snippet fg "green font" 
+{\color{green}${1:${VISUAL}}}
+endsnippet
+
+snippet fb "blue font" 
+{\color{green}${1:${VISUAL}}}
+endsnippet
+
+
 
 snippet => "implies" Ai
 \implies

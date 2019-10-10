@@ -6,14 +6,12 @@ set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
 "  Vundle管理的插件列表必须位于 Vundle#begin() 和 Vundle#end() 之间
 call vundle#begin()
-filetype off
 Plugin 'VundleVim/Vundle.vim'
 ""Powerline is a utility plugin which allows you to create better-looking, more functional vim statuslines.
 Plugin 'Lokaltog/vim-powerline'
 ""This file contains additional syntax highlighting that I use for C++11/14/17 development in Vim. 
 Plugin 'octol/vim-cpp-enhanced-highlight'
 " Indent Guides is a plugin for visually displaying indent levels in Vim.
-
 Plugin 'nathanaelkane/vim-indent-guides'
 " This Vim plugin will help switching between companion files (e.g. ".h" and ".cpp" files)
 Plugin 'derekwyatt/vim-fswitch'
@@ -26,39 +24,52 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'Konfekt/FastFold'
 "tagbar lists sections (tags in general) in a different pane.
 Plugin 'majutsushi/tagbar'
+"UltiSnips is the ultimate solution for snippets in Vim. It has tons of features and is very fast
 Plugin 'SirVer/ultisnips'
-Plugin 'scrooloose/syntastic'
-Plugin 'mantiz/vim-plugin-dirsettings'
 Plugin 'honza/vim-snippets'
+" Syntastic is a syntax checking plugin for Vim created by Martin Grenfell. 
+" It runs files through external syntax checkers and displays any resulting errors to the user.
+Plugin 'scrooloose/syntastic'
+" this is a simple plugin that allows per directory settings for your favourite editor VIM
+Plugin 'mantiz/vim-plugin-dirsettings'
+" vim-grammarous is a powerful grammar checker for Vim.
 Plugin 'rhysd/vim-grammarous'
 Plugin 'szw/vim-dict'
-" two colorscheme
+" colorschemes
 "phd: Color theme with dark blue background for coding
 Plugin 'vim-scripts/phd'
 Plugin 'chriskempson/base16-vim'
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
-
+" vim-signature is a plugin to place, toggle and display marks.
 Plugin 'kshenoy/vim-signature'
+" A Vim plugin that provides painless transparent tags generation and keeps tags up-to date
 Plugin 'vim-scripts/indexer.tar.gz'
 Plugin 'vim-scripts/DfrankUtil'
 Plugin 'vim-scripts/vimprj'
 Plugin 'terryma/vim-multiple-cursors'
+" Comment functions so powerful—no comment necessary.
 Plugin 'scrooloose/nerdcommenter'
+" DrawIt is a plugin which allows one to draw lines left, right, up, down, and along both slants
 Plugin 'vim-scripts/DrawIt'
 "Plugin 'Valloric/YouCompleteMe'
+"This Vim plugin will pull C++ ptototypes into the implementation file
 Plugin 'derekwyatt/vim-protodef'
 Plugin 'scrooloose/nerdtree'
 " Plugin 'fholgado/minibufexpl.vim'
+" With Wildfire you can quickly select the closest text object among a group of candidates.
 Plugin 'gcmt/wildfire.vim'
 Plugin 'sjl/gundo.vim'
 Plugin 'Lokaltog/vim-easymotion'
+" When you open a markdown file in vim, a browser window will open which shows the compiled markdown in real-time, and closes once you close the file in vim.
 Plugin 'suan/vim-instant-markdown'
 "Plugin 'lilydjwg/fcitx.vim'
 "Plugin 'vim-scripts/BOOKMARKS--Mark-and-Highlight-Full-Lines'
 Plugin 'yegappan/grep'
 Plugin 'dyng/ctrlsf.vim'
+" supertab: this is needed for the compatability of UltiSnips and neocomplete.
+Plugin 'ervandew/supertab'
 Plugin 'Shougo/neocomplete.vim'
 "" find tools
 " Plugin 'mileszs/ack.vim'
@@ -73,7 +84,6 @@ Plugin 'vim-latex/vimtex'
 " 插件列表结束
 call vundle#end()
 filetype plugin indent on
-
 " dirsettings
 call dirsettings#Install()
 
@@ -82,7 +92,7 @@ call dirsettings#Install()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " 开启文件类型侦测
-filetype on
+filetype on 
 " 根据侦测到的不同类型加载对应的插件
 filetype plugin on
 
@@ -97,6 +107,9 @@ set ignorecase
 " vim 自身命令行模式智能补全
 set wildmenu
 
+" sensitive for lower upper letters
+" set smartcase
+set autoread
 " 自适应不同语言的智能缩进
 filetype indent on
 
@@ -456,7 +469,7 @@ let NERDTreeAutoDeleteBuffer=1
 
 ""-------------------new added----------------"
 " NERDCommenter
-"" Add spaces after comment delimiters by default
+" Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
@@ -486,106 +499,10 @@ set undodir=~/.vim_undo_history/
 set undofile
 
 
-
-
 " 保存快捷键
 map <leader>ss :mksession! my.vim<cr> :wviminfo! my.viminfo<cr>
 " 恢复快捷键
 map <leader>rs :source my.vim<cr> :rviminfo my.viminfo<cr>
-
-let g:SuperTabRetainCompletionType=2
-let g:SuperTabDefaultCompletionType="<C-X><C-O>"
-let g:SuperTabDefaultCompletionType="<C-p>"
-
-""""""""""""""""AutoComplPop.""""""""""
-"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup =1
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
-
-
-
-" Different file comment templates
-" Python
-autocmd BufNewFile *.py 0r ~/.vim/file-templates/py.vim
-" Fedora review
-autocmd BufNewFile *.fedreview 0r ~/.vim/file-templates/fedreview.vim
-" GNUPlot
-autocmd BufNewFile,BufRead *.plt,.gnuplot setf gnuplot
-autocmd BufNewFile *.plt,.gnuplot 0r ~/.vim/file-templates/gnuplot.vim
-" Shell scripts
-autocmd BufNewFile *.sh 0r ~/.vim/file-templates/sh.vim
-
 "--------------------------------------------------------------------------
 "vim-airline
 "--------------------------------------------------------------------------
@@ -606,8 +523,10 @@ nnoremap <C-s-tab> :bp<CR>
 set wildignore=*.o,*~,*.pyc,*.aux
 
 
+"""""""""""""""""""""""""""""""""""""""""""
+" Syntastic: https://github.com/vim-syntastic/syntastic
+"""""""""""""""""""""""""""""""""""""""""""
 
-" Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -624,23 +543,30 @@ let g:syntastic_cpp_no_include_search = 1
 let g:syntastic_cpp_checkers = ['gcc', 'clang_check', 'cppcheck']
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
+
+" passive_filetypes: check the syntax  errors only manually,sometimes very
+" anoying
+" active_filetypes: check the syntax when you save your file
 let g:syntastic_mode_map = {
             \ "mode": "passive",
-            \ "passive_filetypes": ["cpp", "c"],
-            \ "active_filetypes": ["tex", "python", "sh", "spec", "rst"]
-            \ }
-let g:syntastic_tex_checkers = ['chktex']
+           \ "passive_filetypes": ["cpp", "c","tex", "python", "sh"],
+           \ "active_filetypes": [ ]
+           \  }
+" manually check the errors
+nnoremap <leader>ce :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+let g:syntastic_tex_checkers = ['chktex','lacheck', 'text/language_check']
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_exec = "flake8-3"
-let g:syntastic_rst_checkers = ['rstcheck']
-let g:syntastic_rst_rstcheck_exec = "rstcheck"
-let g:syntastic_perl_checkers = ['perlcritic']
 
 let g:table_mode_corner_corner="+"
 let g:table_mode_header_fillchar="="
-
-
-
+let g:syntastic_loc_list_height=1
+" Turn off multiple kinds of warnings in syntastic in vim:
+let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1234\|SC6789' }
+"""""""""""""""""""""""""""""""""""""""
+"  UltiSnips
+"  
+"""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsUsePythonVersion = 3
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -746,4 +672,128 @@ let g:fastfold_savehook = 0
 let g:fastfold_fold_command_suffixes = []
 " FastFold is by default enabled for files that have more than a certain number of lines, by default set to 200.
 " To change this number, for example, to enable FastFold independent of the number of lines of a file
-" let g:fastfold_minlines = 0
+" let g:fastfold_minlines = 100
+"
+"
+""""""""""""""""""""""""""
+"  vim-instant-markdown  "
+"
+""""""""""""""""""""""""""
+let g:instant_markdown_browser = "zathura"
+
+
+"""""""""""""""""
+"  neocomplete  "
+"""""""""""""""""
+
+let g:SuperTabRetainCompletionType=2
+let g:SuperTabDefaultCompletionType="<C-X><C-O>"
+let g:SuperTabDefaultCompletionType="<C-p>"
+
+"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 2
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+" """"""""""""
+" "  ctrlSF  "
+" """"""""""""
+" 设置ctrlsf 使用ag
+let g:ctrlsf_ackprg = 'ag'
+ " 表示窗口在左边还是右边打开
+let g:ctrlsf_open_left = 0
+
+nmap     <Leader>cf <Plug>CtrlSFPrompt
+vmap     <Leader>cf <Plug>CtrlSFVwordPath
+vmap     <Leader>cF <Plug>CtrlSFVwordExec
+nmap     <Leader>cn <Plug>CtrlSFCwordPath
+nmap     <Leader>cp <Plug>CtrlSFPwordPath
+nnoremap <Leader>co :CtrlSFOpen<CR>
+nnoremap <Leader>ct :CtrlSFToggle<CR>
+inoremap <Leader>ct <Esc>:CtrlSFToggle<CR>
+
+
+"
+"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
