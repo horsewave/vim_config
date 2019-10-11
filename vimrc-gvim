@@ -131,15 +131,15 @@ set shiftwidth=2
 " 让 vim 把连续数量的空格视为一个制表符
 set softtabstop=2
 "" most used colorscheme
-colorscheme evening
-set t_Co=256
-set background=dark  "背景使用黑色
+" colorscheme evening
+" set t_Co=256
+" set background=dark  "背景使用黑色
 
-" """ another colorscheme
-" " 使用 256 颜色库
-" let base16colorspace=256
-" " 使用 base16 中 base16-oceanicnext
-" colorscheme base16-oceanicnext
+""" another colorscheme
+" 使用 256 颜色库
+let base16colorspace=256
+" 使用 base16 中 base16-oceanicnext
+colorscheme base16-oceanicnext
 
 """ another colorscheme
 " colorscheme gotham
