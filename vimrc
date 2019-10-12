@@ -1,6 +1,6 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "1: Vundle环境设置
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 关闭兼容模式
 set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -130,7 +130,8 @@ set tabstop=2
 set shiftwidth=2
 " 让 vim 把连续数量的空格视为一个制表符
 set softtabstop=2
-"" most used colorscheme
+"
+" " "" most used colorscheme
 colorscheme evening
 set t_Co=256
 set background=dark  "背景使用黑色
@@ -138,7 +139,7 @@ set background=dark  "背景使用黑色
 " """ another colorscheme
 " " 使用 256 颜色库
 " let base16colorspace=256
-" " 使用 base16 中 base16-oceanicnext
+" " " " 使用 base16 中 base16-oceanicnext
 " colorscheme base16-oceanicnext
 
 """ another colorscheme
@@ -155,18 +156,19 @@ syntax on           " 语法高亮
 
 set laststatus=2    " 启动显示状态行(1),总是显示状态行(2)  
 "行高亮
+
 set cursorline
 "列高亮，与函数列表有冲突
 set cursorcolumn  
 
 " 去掉输入错误的提示声音
 ""set noeb
-
+set mouse=a
 " 在处理未保存或只读文件的时候，弹出确认
 set confirm
 
 "置粘贴模式，这样粘贴过来的程序代码就不会错位了。
-set paste
+" set paste
 " 显示行号
 set number
 
@@ -245,6 +247,30 @@ set title
 
 "Line length above which to break a line
 autocmd FileType python,cpp,c,text,rst,markdown,sh,sli setl textwidth=79
+
+" the block below: Change cursor shape in different modes
+" autocmd InsertEnter,InsertLeave * set cul!
+if has("autocmd")
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+  au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' | 
+    \   silent execute '!echo -ne "\e[5 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[3 q"' | redraw! |
+    \ endif
+  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif
+
+if &term =~ "xterm\\|rxvt"
+  " use an orange cursor in insert mode
+  let &t_SI = "\<Esc>]12;yellow\x7"
+  " use a red cursor otherwise
+  let &t_EI = "\<Esc>]12;red\x7"
+  silent !echo -ne "\033]12;red\007"
+  " reset cursor when vim exits
+  autocmd VimLeave * silent !echo -ne "\033]112\007"
+  " use \003]12;gray\007 for gnome-terminal and rxvt up to version 9.21
+endif
 
 
 "make 运行
@@ -558,7 +584,6 @@ let g:syntastic_loc_list_height=1
 let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1234\|SC6789' }
 """""""""""""""""""""""""""""""""""""""
 "  UltiSnips
-"  
 """""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsUsePythonVersion = 3
 " better key bindings for UltiSnipsExpandTrigger
