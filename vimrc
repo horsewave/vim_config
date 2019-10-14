@@ -35,7 +35,7 @@ Plugin 'mantiz/vim-plugin-dirsettings'
 " vim-grammarous is a powerful grammar checker for Vim.
 Plugin 'rhysd/vim-grammarous'
 Plugin 'szw/vim-dict'
-" colorschemes
+" colorschemes 
 "phd: Color theme with dark blue background for coding
 Plugin 'vim-scripts/phd'
 Plugin 'chriskempson/base16-vim'
