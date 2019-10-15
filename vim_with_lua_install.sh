@@ -32,6 +32,18 @@ make distclean
             --enable-fail-if-missing \
             --with-lua-prefix=/usr/include/lua5.3 \
             --enable-cscope \
-            --enable-multibyte
+            --enable-multibyte \
+            --enable-fontset \
+            --enable-xim \
+            --enable-gui=auto \
+            --enable-luainterp=dynamic \
+            --enable-pythoninterp=yes \
+            --enable-rubyinterp=dynamic \
+            --enable-perlinterp \
+            --enable-cscope \
+            --enable-sniff \
+            --with-x \
+            --with-compiledby=erocpil \
+            --with-features=huge 
 make
 sudo make install

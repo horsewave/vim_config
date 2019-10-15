@@ -1,4 +1,3 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "1: Vundle环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 关闭兼容模式
@@ -7,6 +6,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 "  Vundle管理的插件列表必须位于 Vundle#begin() 和 Vundle#end() 之间
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+" Ensure hoc syntax does not get reapplied.
+Plugin 'sanjayankur31/hoc.vim'
 ""Powerline is a utility plugin which allows you to create better-looking, more functional vim statuslines.
 Plugin 'Lokaltog/vim-powerline'
 ""This file contains additional syntax highlighting that I use for C++11/14/17 development in Vim. 
@@ -28,6 +29,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " Syntastic is a syntax checking plugin for Vim created by Martin Grenfell. 
+
 " It runs files through external syntax checkers and displays any resulting errors to the user.
 Plugin 'scrooloose/syntastic'
 " this is a simple plugin that allows per directory settings for your favourite editor VIM
@@ -201,14 +203,14 @@ set viminfo+=!
 au BufRead,BufNewFile *  setfiletype txt
 
 "自动补全
-:inoremap ( ()<ESC>i
-:inoremap ) <c-r>=ClosePair(')')<CR>
-:inoremap { {<CR>}<ESC>O
-:inoremap } <c-r>=ClosePair('}')<CR>
-:inoremap [ []<ESC>i
-:inoremap ] <c-r>=ClosePair(']')<CR>
-:inoremap " ""<ESC>i
-:inoremap ' ''<ESC>i
+inoremap ( ()<ESC>i
+inoremap ) <c-r>=ClosePair(')')<CR>
+inoremap { {<CR>}<ESC>O
+inoremap } <c-r>=ClosePair('}')<CR>
+inoremap [ []<ESC>i
+inoremap ] <c-r>=ClosePair(']')<CR>
+inoremap " ""<ESC>i
+inoremap ' ''<ESC>i
 
 imap jj <ESC>
 imap  <CapsLock> <ESC>
@@ -301,6 +303,14 @@ nmap <Leader>Q :qa!<CR>
 
 map <C-a> <esc>ggVG
 
+" split the windows
+nmap <Leader>sh :split<CR>
+nmap <Leader>sv :vsplit<CR>
+" map the navigation key
+nnoremap <Right> <C-w>l
+nnoremap <Left> <C-w>h
+nnoremap <Up> <C-w>k
+nnoremap <Down> <C-w>j
 "toggle highlight for the search results.
 nnoremap <Leader>hl  :set hlsearch!<CR>
 
@@ -585,6 +595,8 @@ let g:syntastic_quiet_messages = { 'regex': 'SC2148\|SC1234\|SC6789' }
 """""""""""""""""""""""""""""""""""""""
 "  UltiSnips
 """""""""""""""""""""""""""""""""""""""
+" let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+let g:UltiSnipsSnippetDirectories=['/home/mabo/.vim/UltiSnips']
 let g:UltiSnipsUsePythonVersion = 3
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
