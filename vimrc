@@ -1,8 +1,10 @@
-"""""""""""""
-"1: Vundle环境设置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 关闭兼容模式
 set nocompatible
+" Plugins managed by vundle begein{
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"1: Vundle环境设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=~/.vim/bundle/Vundle.vim 
 "  Vundle管理的插件列表必须位于 Vundle#begin() 和 Vundle#end() 之间
 call vundle#begin()
@@ -119,15 +121,28 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'jiangmiao/auto-pairs'
 " Toggles between hybrid and absolute line numbers automatically
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-
 Plugin 'ycm-core/YouCompleteMe'
+
+" Requiresin the_silver_surfer to be installed
+Plugin 'lokikl/vim-ctrlp-ag'
+" Requiresin Ctrlp:CtrlP extension for fuzzy-search in tag matches
+Plugin 'ivalkeen/vim-ctrlp-tjump'
+
+" man pages using vim plugin when available
+Plugin 'jez/vim-superman'
+
 
 "}" 
 "插件列表结束
 call vundle#end()
+
 filetype plugin indent on
 " dirsettings
 call dirsettings#Install()
+" }
+
+
+" vim general setups begin {
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "1:实用设置
@@ -148,7 +163,31 @@ set wildmenu
 " sensitive for lower upper letters
 " set smartcase
 set autoread
+" Permit unsaved buffers
 set hidden
+
+" Enable conceal
+set conceallevel=2
+set concealcursor=nc
+
+" Abbreviations, better to use snippets
+" ab me Bo Ma
+" ab sop System.out.println(
+" ab pvsm public static void main (String [] args)
+" ab sforge http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+
+
+" Automatically write a file when leaving a modified buffer
+set autowrite
+" Start a dialog when a command fails (here when quit command fails)
+set confirm
+
+" Highlight current line
+set cursorline
+
+set syn=auto
+set showmatch
+
 " 自适应不同语言的智能缩进
 filetype indent on
 "下面两行在进行编写代码时，在格式对起上很有用；
@@ -221,13 +260,6 @@ set enc=utf-8
 set termencoding=utf-8
 set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 
-"" set guifont=Liberation\ Mono\ for\ Powerline\ 10
-"set guifont=Inconsolata\ for\ Powerline\ 13
-"let g:Powerline_symbols='compatible'
-""let g:Powerline_symbols = 'fancy'
-"let g:Powerline_colorscheme = 'solarized256'
-
-
 " 保存全局变量
 set viminfo+=!
 
@@ -237,29 +269,9 @@ set viminfo+=!
 " 高亮显示普通txt文件（需要txt.vim脚本）
 au BufRead,BufNewFile *  setfiletype txt
 
-"自动补全
-inoremap ( ()<ESC>i
-inoremap ) <c-r>=ClosePair(')')<CR>
-inoremap { {<CR>}<ESC>O
-inoremap } <c-r>=ClosePair('}')<CR>
-inoremap [ []<ESC>i
-inoremap ] <c-r>=ClosePair(']')<CR>
-inoremap " ""<ESC>i
-inoremap ' ''<ESC>i
-
-imap jj <ESC>
-imap  <CapsLock> <ESC>
-
-function! ClosePair(char)
-    if getline('.')[col('.') - 1] == a:char
-        return "\<Right>"
-    else
-        return a:char
-    endif
-endfunction
-
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
+
 
 " quickfix模式
 ""autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
@@ -270,21 +282,23 @@ filetype indent on
 "共享剪贴板  
 set clipboard+=unnamed
 
-""-------------------new added----------------"
-
-" set some context
-set scrolloff=1
-" enable increamental search
-set incsearch
-set syn=auto
-set showmatch
-
 "Show info in the window title
 set title
 
 " Disable the complete window
 " set completeopt-=preview
 "
+" Underline bad spellings, undercurl doesn't show on my config
+" https://vi.stackexchange.com/questions/15015/how-do-i-turn-off-undercurls-in-vim-guis
+" https://stackoverflow.com/questions/6008921/how-do-i-change-the-highlight-style-in-vim-spellcheck
+hi clear SpellBad
+hi SpellBad cterm=underline gui=underline
+
+" Use matchit
+runtime! macros/matchit.vim
+
+" Delete comment character when joining commented lines
+set formatoptions+=j
 
 "Line length above which to break a line
 autocmd FileType python,cpp,c,text,rst,markdown,sh,sli setl textwidth=79
@@ -318,6 +332,98 @@ endif
 ":set makeprg=g++\ -Wall\ \ %
 "
 
+
+" vim setups end }
+
+"vim special setups begin {
+
+" Folding in C,CPP files
+autocmd FileType c,cpp,py,tex,sh setl foldenable foldmethod=syntax
+" autocmd FileType vim setl foldenable foldmethod=marker
+" This is for vertical indenting
+" set list
+" set listchars=tab:\|\ ,trail:-,eol:$
+" Folding
+" set foldenable
+" let &foldmarker='{,}'
+" set foldnestmax=10
+set nofoldenable
+" set foldlevel=2
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+nnoremap <silent> <S-Space> @=(foldlevel('.')?'zA':"\<Space>")<CR>
+"Folding
+set foldcolumn=5
+
+" open the current file in a new tab
+nmap <Leader>nw  :tabedit %<CR>
+
+
+
+" Different file comment templates
+" use vim to new a file, it will automatically load the templates,supper
+" cool!
+" Python
+autocmd BufNewFile *.py 0r ~/.vim/file-templates/py.vim
+" Fedora review
+autocmd BufNewFile *.fedreview 0r ~/.vim/file-templates/fedreview.vim
+" GNUPlot
+autocmd BufNewFile,BufRead *.plt,.gnuplot setf gnuplot
+autocmd BufNewFile *.plt,.gnuplot 0r ~/.vim/file-templates/gnuplot.vim
+" Shell scripts
+autocmd BufNewFile *.sh 0r ~/.vim/file-templates/sh.vim
+
+" Save and automatically load folds
+" You need to make a ~/.vim/views folder and chmod it to 755
+" mkdir -p ~/.vim/view
+" chmod 755 ~/.vim/view
+autocmd BufWinLeave *.* silent! mkview
+autocmd BufWinEnter *.* silent! loadview
+
+
+
+" cpp setups begin {
+
+" cpp setups end}
+
+
+" latex setups begin {
+"
+"
+" latex setups end }
+
+" python setups begin {
+
+
+" python setups end }
+
+"vim special setups end }
+
+" keys maps for vim begin {
+
+" "自动补全 begin {{
+" this is implemented by the plugin of 'jiangmiao/auto-pairs'
+" inoremap ( ()<ESC>i
+" inoremap ) <c-r>=ClosePair(')')<CR>
+" inoremap { {<CR>}<ESC>O
+" inoremap } <c-r>=ClosePair('}')<CR>
+" inoremap [ []<ESC>i
+" inoremap ] <c-r>=ClosePair(']')<CR>
+" inoremap " ""<ESC>i
+" inoremap ' ''<ESC>i
+" function! ClosePair(char)
+    " if getline('.')[col('.') - 1] == a:char
+        " return "\<Right>"
+    " else
+        " return a:char
+    " endif
+" endfunction
+"
+
+" "自动补全 end }
+" 
+
+imap jj <ESC>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "3:键盘命令(map)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -326,7 +432,9 @@ let mapleader=";"
 
 " 定义快捷键到行首和行尾
 nmap <Leader>h 0
+vmap <Leader>h 0
 nmap <Leader>e $
+vmap <Leader>e $
 " 设置快捷键将选中文本块复制至系统剪贴板
 vnoremap <Leader>y "+y
 " 设置快捷键将系统剪贴板内容粘贴至 vim
@@ -339,17 +447,19 @@ nmap <Leader>w :w<CR>
 nmap <Leader>WQ :wa<CR>:q<CR>
 " 不做任何保存，直接退出 vim
 nmap <Leader>Q :qa!<CR>
-
 map <C-a> <esc>ggVG
+"go to the corresponding block
+nmap <Leader>b %
+vmap <Leader>b %
 
 " split the windows
 nmap <Leader>sh :split<CR>
 nmap <Leader>sv :vsplit<CR>
 " map the navigation key
-nnoremap <Right> <C-w>l
-nnoremap <Left> <C-w>h
-nnoremap <Up> <C-w>k
-nnoremap <Down> <C-w>j
+nnoremap <C-Right> <C-w>l
+nnoremap <C-Left> <C-w>h
+nnoremap <C-Up> <C-w>k
+nnoremap <C-Down> <C-w>j
 "toggle highlight for the search results.
 nnoremap <Leader>hl  :set hlsearch!<CR>
 
@@ -376,32 +486,6 @@ let g:indent_guides_guide_size=1
 " *.cpp 和 *.h 间切换
 nmap <silent> <Leader>sw :FSHere<cr>
 
-""""""""""""vim-signature 快捷键"""""""""""""""""""
-let g:SignatureMap = {
-        \ 'Leader'             :  "m",
-        \ 'PlaceNextMark'      :  "m,",
-        \ 'ToggleMarkAtLine'   :  "m.",
-        \ 'PurgeMarksAtLine'   :  "m-",
-        \ 'DeleteMark'         :  "dm",
-        \ 'PurgeMarks'         :  "mda",
-        \ 'PurgeMarkers'       :  "m<BS>",
-        \ 'GotoNextLineAlpha'  :  "']",
-        \ 'GotoPrevLineAlpha'  :  "'[",
-        \ 'GotoNextSpotAlpha'  :  "`]",
-        \ 'GotoPrevSpotAlpha'  :  "`[",
-        \ 'GotoNextLineByPos'  :  "]'",
-        \ 'GotoPrevLineByPos'  :  "['",
-        \ 'GotoNextSpotByPos'  :  "mn",
-        \ 'GotoPrevSpotByPos'  :  "mp",
-        \ 'GotoNextMarker'     :  "[+",
-        \ 'GotoPrevMarker'     :  "[-",
-        \ 'GotoNextMarkerAny'  :  "]=",
-        \ 'GotoPrevMarkerAny'  :  "[=",
-        \ 'ListLocalMarks'     :  "ms",
-        \ 'ListLocalMarkers'   :  "m?"
-        \ }
-
-
 
 "选中一段文字并全文搜索这段文字(,/)
 vmap <Leader>f y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
@@ -411,7 +495,6 @@ vmap<Leader>/  y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 " confirm：是否替换前逐一确认
 " wholeword：是否整词匹配
 " replace：被替换字符串
-
 " Escape special characters in a string for exact matching.
 " This is useful to copying strings from the file to the search tool
 " Based on this - http://peterodding.com/code/vim/profile/autoload/xolox/escape.vim
@@ -433,7 +516,6 @@ function! GetVisual() range
   let regtype_save = getregtype('"')
   let cb_save = &clipboard
   set clipboard&
-
   " Put the current visual selection in the " register
   normal! ""gvy
   let selection = getreg('"')
@@ -452,6 +534,11 @@ endfunction
 vmap <Leader>r <Esc>:%s/<c-r>=GetVisual()<cr>/
 
 
+" keys maps for vim end }
+
+
+
+"vim plugins begin{
 
 """""""""""""tagbar"""""""""""""""""
 " 设置 tagbar 子窗口的位置出现在主编辑区的左边
@@ -518,6 +605,7 @@ nmap <Leader>tp :tprevious<CR>
 " 默认 --c++-kinds=+p+l，重新设置为 --c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v
 " 默认 --fields=+iaS 不满足 YCM 要求，需改为 --fields=+iaSl
 let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
+" NERDTree{
 
 """"""""""""""NERDTree""""""""""""""""
 " 使用 NERDTree 插件查看工程文件。设置快捷键，速记：file list
@@ -534,8 +622,6 @@ let NERDTreeMinimalUI=1
 let NERDTreeAutoDeleteBuffer=1
 
 
-
-""-------------------new added----------------"
 " NERDCommenter
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -550,6 +636,8 @@ let NERDTreeIgnore = ['\.pyc$', '\.aux$', '\.bbl$', '\.blg', '\.brf$', '\.out$',
 
 let g:indentLine_setColors = 0
 
+
+" }
 
 
 """""""""""""gundo.vim"""""""""""""""""
@@ -622,6 +710,7 @@ let g:syntastic_mode_map = {
            \  }
 " manually check the errors
 nnoremap <leader>ce :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+
 let g:syntastic_tex_checkers = ['chktex','lacheck', 'text/language_check']
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_exec = "flake8-3"
@@ -674,19 +763,39 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](node_modules|DS_Store|dist|build|coverage)|(\.(git|hg|svn)$)',
   \ 'file': '\v\.(exe|so|dll)$',
   \ }
+
 let g:ctrlp_ag_ignores = '--ignore .git
     \ --ignore "deps/*"
     \ --ignore "_build/*"
     \ --ignore "node_modules/*"'
 
-" ignore these file types completely
-" LaTeX temporary files
-set wildignore+=*.aux,*.bbl,*.bcf,*.blg,*.fls,*.idx,*.ilg,*.ind,*.log,*.out,*.run.xml,*synctex.gz,*.fdb_latexmk,*.nav,*.snm,*.toc,*.vrb,*.cut,*.lo,*.brf
 
-" Use silver searcher instead of ack
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
+" lokikl/vim-ctrlp-ag{
+"
+"Press <leader>ca on the word you want to search (works in both normal/visual mode)
+nnoremap <leader>cf :CtrlPag<cr>
+vnoremap <leader>cf :CtrlPagVisual<cr>
+" Press <leader>ca, a prompt opened to ask you what to search
+nnoremap <leader>ca :CtrlPagLocate
+" Press <leader>cp, to redo the last ag search in CtrlP
+nnoremap <leader>cp :CtrlPagPrevious<cr>
+let g:ctrlp_ag_ignores = '--ignore .git
+      \ --ignore "deps/*"
+      \ --ignore "_build/*"
+      \ --ignore "node_modules/*"'
+
+" }
+"
+" ivalkeen/vim-ctrlp-tjump{
+nnoremap <c-]> :CtrlPtjump<cr>
+" nnoremap <c-[> :CtrlPtjump<cr> "this conflicts with <esc>"
+vnoremap <c-]> :CtrlPtjumpVisual<cr>
+" vnoremap <c-[> :CtrlPtjumpVisual<cr>"this conflicts with <esc>"
+" CtrlPtjump - go to declaration of the identifier supplied as an argument, if not use the word under cursor
+" CtrlPtjumpVisual - go to declaration of the visual selected text"
+" If there is only one tag found, it is possible to open it without opening CtrlP window:
+let g:ctrlp_tjump_only_silent = 1
+" }
 
 ""}
 "latex stuff{
@@ -699,17 +808,20 @@ autocmd FileType tex setl softtabstop=2
 autocmd FileType tex setl softtabstop=2
 autocmd FileType tex IndentLinesDisable
 autocmd FileType tex let g:ycm_auto_trigger=0
+
 "Spell check
 autocmd FileType tex,markdown,rst,mail,markdown setl spell spelllang=en_gb
 autocmd FileType tex,markdown,rst,mail,markdown setl linebreak
-let g:tex_conceal="abdgm"
+" tex-conceal.vim{
+ 
 let g:tex_conceal="abdgm"
 let g:tex_fold_enabled=1
-set conceallevel=1
+set conceallevel=2
+"}
 
 ""--------vimtex plugin---------------------
  " LaTeX temporary files
-" set wildignore+=*.aux,*.bbl,*.bcf,*.blg,*.fls,*.idx,*.ilg,*.ind,*.log,*.out,*.run.xml,*synctex.gz,*.fdb_latexmk,*.nav,*.snm,*.toc,*.vrb,*.cut,*.lo,*.brf
+set wildignore+=*.aux,*.bbl,*.bcf,*.blg,*.fls,*.idx,*.ilg,*.ind,*.log,*.out,*.run.xml,*synctex.gz,*.fdb_latexmk,*.nav,*.snm,*.toc,*.vrb,*.cut,*.lo,*.brf
 
 " change the vimtex leader key(\) to ';'
 let maplocalleader = ';'
@@ -756,10 +868,7 @@ let g:vimtex_fold_enabled = 1
 
 
 "
-"end latex stuff}"
-
-
-
+"end latex stuff }"
 
 """""""""""""""""""""""""""""""
 ""  'Lokaltog/vim-powerline'  "
@@ -768,6 +877,7 @@ let g:vimtex_fold_enabled = 1
 
 """"""""""""""""""""""""""""""""""""""
 ""  octol/vim-cpp-enhanced-highlight "
+
 """"""""""""""""""""""""""""""""""""""
 "" " Highlighting of class scope is disabled by default. To enable set
 "" let g:cpp_class_scope_highlight = 1
@@ -898,3 +1008,42 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 "  }
 
+"vim-signature begin {
+"
+""""""""""""vim-signature 快捷键"""""""""""""""""""
+let g:SignatureMap = {
+        \ 'Leader'             :  "m",
+        \ 'PlaceNextMark'      :  "m,",
+        \ 'ToggleMarkAtLine'   :  "m.",
+        \ 'PurgeMarksAtLine'   :  "m-",
+        \ 'DeleteMark'         :  "dm",
+        \ 'PurgeMarks'         :  "mda",
+        \ 'PurgeMarkers'       :  "m<BS>",
+        \ 'GotoNextLineAlpha'  :  "']",
+        \ 'GotoPrevLineAlpha'  :  "'[",
+        \ 'GotoNextSpotAlpha'  :  "`]",
+        \ 'GotoPrevSpotAlpha'  :  "`[",
+        \ 'GotoNextLineByPos'  :  "]'",
+        \ 'GotoPrevLineByPos'  :  "['",
+        \ 'GotoNextSpotByPos'  :  "mn",
+        \ 'GotoPrevSpotByPos'  :  "mp",
+        \ 'GotoNextMarker'     :  "[+",
+        \ 'GotoPrevMarker'     :  "[-",
+        \ 'GotoNextMarkerAny'  :  "]=",
+        \ 'GotoPrevMarkerAny'  :  "[=",
+        \ 'ListLocalMarks'     :  "ms",
+        \ 'ListLocalMarkers'   :  "m?"
+        \ }
+
+
+
+
+"vim-signature end }
+"
+" vim-superman{
+" Make it cleaner
+autocmd FileType man setlocal nomod nolist noexpandtab tabstop=8 softtabstop=8 shiftwidth=8
+
+" }
+
+"}
