@@ -1,7 +1,6 @@
 " 关闭兼容模式
 set nocompatible
 " Plugins managed by vundle begein{
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "1: Vundle环境设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -30,7 +29,6 @@ Plugin 'majutsushi/tagbar'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " Syntastic is a syntax checking plugin for Vim created by Martin Grenfell. 
-
 " It runs files through external syntax checkers and displays any resulting errors to the user.
 Plugin 'scrooloose/syntastic'
 " this is a simple plugin that allows per directory settings for your favourite editor VIM
@@ -130,7 +128,6 @@ Plugin 'ivalkeen/vim-ctrlp-tjump'
 
 " man pages using vim plugin when available
 Plugin 'jez/vim-superman'
-
 
 "}" 
 "插件列表结束
@@ -278,7 +275,6 @@ set completeopt=longest,menu
 
 " 自适应不同语言的智能缩进
 filetype indent on
-
 "共享剪贴板  
 set clipboard+=unnamed
 
@@ -387,7 +383,15 @@ autocmd BufWinEnter *.* silent! loadview
 
 
 " latex setups begin {
-"
+
+" Compile document, be it groff/LaTeX/markdown/etc.
+	" map <leader>c :w! \| !compiler <c-r>%<CR>
+
+" Runs a script that cleans out tex build files whenever I close out of a .tex file.
+	autocmd VimLeave *.tex !texclear %
+	" Word count:
+	autocmd FileType tex map <leader>cw :w !detex \| wc -w<CR>
+
 "
 " latex setups end }
 
@@ -463,6 +467,8 @@ nnoremap <C-Down> <C-w>j
 "toggle highlight for the search results.
 nnoremap <Leader>hl  :set hlsearch!<CR>
 
+"show messages of the vim
+nmap <Leader>m :messages<CR>
 "will open the current file in vscode from vim
 nnoremap <leader>ov :exe ':silent !code %'<CR>:redraw!<CR>
 " copy, cut and paste like windows
@@ -671,10 +677,12 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 "In addition, you can also choose which path formatter airline uses. This affects how file paths are displayed in each individual tab as well as the current buffer indicator in the upper right. To do so, set the formatter field with:
 "
 " let g:airline#extensions#tabline#formatter = 'default'
-" " 设置切换Buffer快捷键"
+"" 设置切换Buffer快捷键":this does not work in text-mode vim (e.g., via SSH) because Ctrl-Tab cannot be mapped. 
+" However, it does work in gVim
 nnoremap <C-tab> :bn<CR>
-nnoremap <C-s-tab> :bp<CR>
-
+nnoremap <C-S-tab> :bp<CR>
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bp :bp<CR>
 " Ignore some extensions
 set wildignore=*.o,*~,*.pyc,*.aux
 
@@ -801,19 +809,22 @@ let g:ctrlp_tjump_only_silent = 1
 "latex stuff{
 set grepprg="grep\ -nH\ $*"
 " indentation for tex files
-autocmd BufRead,BufNewFile *.sty setl filetype=tex
+" autocmd BufRead,BufNewFile *.sty setl filetype=tex
+autocmd BufRead,BufNewFile *.tex set filetype=tex
 autocmd FileType tex setl sw=2
 autocmd FileType tex setl tabstop=2
 autocmd FileType tex setl softtabstop=2
 autocmd FileType tex setl softtabstop=2
 autocmd FileType tex IndentLinesDisable
-autocmd FileType tex let g:ycm_auto_trigger=0
+"set tex file auto-trigger disabled(0)
+" autocmd FileType tex let g:ycm_auto_trigger=0
 
 "Spell check
 autocmd FileType tex,markdown,rst,mail,markdown setl spell spelllang=en_gb
 autocmd FileType tex,markdown,rst,mail,markdown setl linebreak
 " tex-conceal.vim{
  
+let g:tex_conceal="abdgm"
 let g:tex_conceal="abdgm"
 let g:tex_fold_enabled=1
 set conceallevel=2
@@ -852,11 +863,6 @@ let g:vimtex_compiler_latexmk = {
             \ ],
             \}
 
-if !exists('g:ycm_semantic_triggers')
-    let g:ycm_semantic_triggers = {}
-endif
-
-let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 let g:vimtex_complete_bib = {
             \ 'recursive': 0,
             \ 'simple': 1,
@@ -920,6 +926,7 @@ let g:fastfold_fold_command_suffixes = []
 """"""""""""""""""""""""""
 let g:instant_markdown_browser = "zathura"
 
+let g:instant_markdown_slow = 1
 
 """""""""""""""""
 "  neocomplete  "

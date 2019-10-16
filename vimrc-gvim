@@ -508,9 +508,9 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 "In addition, you can also choose which path formatter airline uses. This affects how file paths are displayed in each individual tab as well as the current buffer indicator in the upper right. To do so, set the formatter field with:
 "
 " let g:airline#extensions#tabline#formatter = 'default'
-" " 设置切换Buffer快捷键"
-nnoremap <C-tab> :bn<CR>
-nnoremap <C-s-tab> :bp<CR>
+" " " 设置切换Buffer快捷键"
+" nnoremap <C-tab> :bn<CR>
+" nnoremap <C-s-tab> :bp<CR>
 
 " Ignore some extensions
 set wildignore=*.o,*~,*.pyc,*.aux

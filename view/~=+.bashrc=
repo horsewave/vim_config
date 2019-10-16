@@ -84,7 +84,7 @@ setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
-setlocal imsearch=2
+setlocal imsearch=0
 setlocal include=
 setlocal includeexpr=
 setlocal indentexpr=GetShIndent()
@@ -132,7 +132,7 @@ setlocal syntax=sh
 endif
 setlocal tabstop=2
 setlocal tagcase=
-setlocal tags=~/.vim/tags,tags
+setlocal tags=
 setlocal textwidth=79
 setlocal thesaurus=
 setlocal undofile
@@ -141,12 +141,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 12 - ((5 * winheight(0) + 28) / 56)
+let s:l = 123 - ((21 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-12
-normal! 055|
+123
+normal! 013|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :
