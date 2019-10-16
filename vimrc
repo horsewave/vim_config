@@ -140,9 +140,7 @@ call dirsettings#Install()
 
 
 " vim general setups begin {
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"1:实用设置
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""1:实用设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " 开启文件类型侦测
@@ -167,6 +165,8 @@ set hidden
 set conceallevel=2
 set concealcursor=nc
 
+" set backspace working 
+set bs=2
 " Abbreviations, better to use snippets
 " ab me Bo Ma
 " ab sop System.out.println(
@@ -268,12 +268,8 @@ au BufRead,BufNewFile *  setfiletype txt
 
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
-
-
-" quickfix模式
-""autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
-
 " 自适应不同语言的智能缩进
+ 
 filetype indent on
 "共享剪贴板  
 set clipboard+=unnamed
@@ -329,30 +325,41 @@ endif
 "
 
 
-" vim setups end }
+"""""""""""""""""""""""""
+"  " vim setups end }
+"""""""""""""""""""""""""
 
-"vim special setups begin {
+""""""""""""""""""""""""""""""""""
+"  "vim special setups begin {
+""""""""""""""""""""""""""""""""""
+
+"folding files begin {
 
 " Folding in C,CPP files
 autocmd FileType c,cpp,py,tex,sh setl foldenable foldmethod=syntax
+" autocmd BufRead,BufNewFile .vimrc  setl foldenable foldmethod=marker foldmarker={,}
 " autocmd FileType vim setl foldenable foldmethod=marker
 " This is for vertical indenting
 " set list
 " set listchars=tab:\|\ ,trail:-,eol:$
 " Folding
-" set foldenable
 " let &foldmarker='{,}'
 " set foldnestmax=10
-set nofoldenable
-" set foldlevel=2
+let g:markdown_folding = 1
+let g:tex_fold_enabled = 1
+let g:vimsyn_folding = 'af'
+
+set foldenable
+set foldlevel=2
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nnoremap <silent> <S-Space> @=(foldlevel('.')?'zA':"\<Space>")<CR>
 "Folding
 set foldcolumn=5
 
+""folding files begin }
+
 " open the current file in a new tab
 nmap <Leader>nw  :tabedit %<CR>
-
 
 
 " Different file comment templates
@@ -375,6 +382,24 @@ autocmd BufNewFile *.sh 0r ~/.vim/file-templates/sh.vim
 autocmd BufWinLeave *.* silent! mkview
 autocmd BufWinEnter *.* silent! loadview
 
+""""""""""""""""""""
+"  " quickfix模式{
+  "
+""""""""""""""""""""
+
+autocmd FileType c,cpp,cu,py map <buffer> <F5> :w<cr>:make<cr>
+" :cc                显示详细错误信息 ( :help :cc )
+" :cp                跳到上一个错误 ( :help :cp )
+" :cn                跳到下一个错误 ( :help :cn )
+" :cl                列出所有错误 ( :help :cl )
+" :cw                如果有错误列表，则打开quickfix窗口 ( :help :cw )
+" :ccl                close quickfix窗口 ( :help :cw )
+" :copen                open quickfix窗口 ( :help :cw )
+
+""""""""""""""""""""
+"  " quickfix模式}
+  "
+""""""""""""""""""""
 
 
 " cpp setups begin {
@@ -400,10 +425,16 @@ autocmd BufWinEnter *.* silent! loadview
 
 " python setups end }
 
-"vim special setups end }
+"""""""""""""""""""""""""""""""
+"  vim special setups end }  "
+"""""""""""""""""""""""""""""""
 
-" keys maps for vim begin {
 
+
+
+"""""""""""""""""""""""""""""""""
+"   keys maps for vim begin {  "
+"""""""""""""""""""""""""""""""""
 " "自动补全 begin {{
 " this is implemented by the plugin of 'jiangmiao/auto-pairs'
 " inoremap ( ()<ESC>i
@@ -540,11 +571,17 @@ endfunction
 vmap <Leader>r <Esc>:%s/<c-r>=GetVisual()<cr>/
 
 
-" keys maps for vim end }
+""""""""""""""""""""""""""""""
+"   keys maps for vim end }  "
+"""""""""""""""""""""""""""""""
 
 
 
-"vim plugins begin{
+
+""""""""""""""""""""""""""
+"  "vim plugins begin{
+ 
+""""""""""""""""""""""""""
 
 """""""""""""tagbar"""""""""""""""""
 " 设置 tagbar 子窗口的位置出现在主编辑区的左边
@@ -840,7 +877,9 @@ let maplocalleader = ';'
 " " NOTE: See also ~/.vim/personal/ftplugin/tex.vim
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
+"don't show quickfix error messages
 let g:vimtex_quickfix_mode=0
+
 
 let g:vimtex_compiler_latexmk = {
             \ 'backend' : 'jobs',
@@ -870,7 +909,6 @@ let g:vimtex_complete_bib = {
 " Do not open the quickfix window automatically for warnings.
 let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_fold_enabled = 1
-
 
 
 "
@@ -904,13 +942,11 @@ let g:vimtex_fold_enabled = 1
 "                                  Konfekt/FastFold "
 " 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap zuz <Plug>(FastFoldUpdate)
 let g:fastfold_savehook = 1
 let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
 let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
 
-let g:markdown_folding = 1
-let g:tex_fold_enabled = 1
-let g:vimsyn_folding = 'af'
 " If you prefer that folds are only updated manually but not when saving the buffer: 
 let g:fastfold_savehook = 0
 " If you prefer that folds are not updated whenever you close or open folds by a standard keystroke such as zx,zo or zc,
@@ -1053,4 +1089,8 @@ autocmd FileType man setlocal nomod nolist noexpandtab tabstop=8 softtabstop=8 s
 
 " }
 
-"}
+""""""""""""""""""""""""
+"  vim plugins begin}  "
+""""""""""""""""""""""""
+
+
