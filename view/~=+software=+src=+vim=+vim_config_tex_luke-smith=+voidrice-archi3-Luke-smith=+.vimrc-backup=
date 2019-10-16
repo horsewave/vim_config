@@ -3,19 +3,19 @@ argglobal
 let s:cpo_save=&cpo
 set cpo&vim
 inoremap <buffer> <silent> <BS> =AutoPairsDelete()
-inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
-inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
-inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
 inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
+inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
+inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
+inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
 inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
-inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
-inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
-inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
-inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
-inoremap <buffer> <silent> å =AutoPairsFastWrap()
-inoremap <buffer> <silent> â =AutoPairsBackInsert()
-inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
 inoremap <buffer> <silent> î :call AutoPairsJump()a
+inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
+inoremap <buffer> <silent> â =AutoPairsBackInsert()
+inoremap <buffer> <silent> å =AutoPairsFastWrap()
+inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
+inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
+inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
+inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
 vnoremap <buffer> <silent> [" :exe "normal! gv"|call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")
 nnoremap <buffer> <silent> [" :call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")
 vnoremap <buffer> <silent> [] m':exe "normal! gv"|call search('^\s*endf*\%[unction]\>', "bW")
@@ -34,8 +34,8 @@ inoremap <buffer> <silent> " =AutoPairsInsert('"')
 inoremap <buffer> <silent> ' =AutoPairsInsert('''')
 inoremap <buffer> <silent> ( =AutoPairsInsert('(')
 inoremap <buffer> <silent> ) =AutoPairsInsert(')')
-noremap <buffer> <silent> ð :call AutoPairsToggle()
 noremap <buffer> <silent> î :call AutoPairsJump()
+noremap <buffer> <silent> ð :call AutoPairsToggle()
 inoremap <buffer> <silent> [ =AutoPairsInsert('[')
 inoremap <buffer> <silent> ] =AutoPairsInsert(']')
 inoremap <buffer> <silent> ` =AutoPairsInsert('`')
@@ -122,7 +122,7 @@ setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
-setlocal relativenumber
+setlocal norelativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
 setlocal noscrollbind
@@ -135,7 +135,7 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%!airline#statusline(1)
+setlocal statusline=%!Pl#Statusline(0,0)
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
@@ -154,12 +154,13 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 84 - ((40 * winheight(0) + 20) / 41)
+let s:l = 85 - ((5 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-84
-normal! 033|
+85
+normal! 027|
+lcd ~/software/src/vim/vim_config_tex_luke-smith/voidrice-archi3-Luke-smith
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

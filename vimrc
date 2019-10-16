@@ -297,10 +297,11 @@ autocmd FileType python,cpp,c,text,rst,markdown,sh,sli setl textwidth=79
 
 " the block below: Change cursor shape in different modes
 " autocmd InsertEnter,InsertLeave * set cul!
+
 if has("autocmd")
   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
   au InsertEnter,InsertChange *
-    \ if v:insertmode == 'i' | 
+    \ if v:insertmode == 'i' |
     \   silent execute '!echo -ne "\e[5 q"' | redraw! |
     \ elseif v:insertmode == 'r' |
     \   silent execute '!echo -ne "\e[3 q"' | redraw! |
@@ -413,7 +414,7 @@ autocmd FileType c,cpp,cu,py map <buffer> <F5> :w<cr>:make<cr>
 	" map <leader>c :w! \| !compiler <c-r>%<CR>
 
 " Runs a script that cleans out tex build files whenever I close out of a .tex file.
-	autocmd VimLeave *.tex !texclear %
+	autocmd VimLeave *.tex !/home/mabo/.vim/tools/texclear %
 	" Word count:
 	autocmd FileType tex map <leader>cw :w !detex \| wc -w<CR>
 
@@ -817,13 +818,13 @@ let g:ctrlp_ag_ignores = '--ignore .git
 
 " lokikl/vim-ctrlp-ag{
 "
-"Press <leader>ca on the word you want to search (works in both normal/visual mode)
-nnoremap <leader>cf :CtrlPag<cr>
-vnoremap <leader>cf :CtrlPagVisual<cr>
-" Press <leader>ca, a prompt opened to ask you what to search
-nnoremap <leader>ca :CtrlPagLocate
-" Press <leader>cp, to redo the last ag search in CtrlP
-nnoremap <leader>cp :CtrlPagPrevious<cr>
+" "Press <leader>ca on the word you want to search (works in both normal/visual mode)
+" nnoremap <leader>cf :CtrlPag<cr>
+" vnoremap <leader>cf :CtrlPagVisual<cr>
+" " Press <leader>ca, a prompt opened to ask you what to search
+" nnoremap <leader>ca :CtrlPagLocate
+" " Press <leader>cp, to redo the last ag search in CtrlP
+" nnoremap <leader>cp :CtrlPagPrevious<cr>
 let g:ctrlp_ag_ignores = '--ignore .git
       \ --ignore "deps/*"
       \ --ignore "_build/*"
