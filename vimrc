@@ -240,8 +240,9 @@ set mouse=a
 " 在处理未保存或只读文件的时候，弹出确认
 set confirm
 
+
 "置粘贴模式，这样粘贴过来的程序代码就不会错位了。
-" set paste
+set paste
 " 显示行号
 set number
 
@@ -271,9 +272,9 @@ set completeopt=longest,menu
 " 自适应不同语言的智能缩进
  
 filetype indent on
+
 "共享剪贴板  
 set clipboard+=unnamed
-
 "Show info in the window title
 set title
 
@@ -509,6 +510,10 @@ vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <C-r><C-o>+
 
+" Make shift-insert work like in Xterm
+
+map <S-Insert> <MiddleMouse>
+map! <S-Insert> <MiddleMouse>
 
 """""""""""Indent Guides"""""""""""""""""""""
 " 随 vim 自启动
@@ -793,8 +798,10 @@ runtime! macros/matchit.vim
 " Delete comment character when joining commented lines
 set formatoptions+=j
 
-""-------------------ag and ctrlp to find and search----------------"{
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  ""-------------------ag and ctrlp to find and search----------------"  
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" {
 let g:ag_highlight=1
 let g:ag_working_path_mode="r"
 "ctrlp default can not search the hidden file. add -hidden to enable it .
@@ -819,10 +826,10 @@ let g:ctrlp_ag_ignores = '--ignore .git
 " lokikl/vim-ctrlp-ag{
 "
 " "Press <leader>ca on the word you want to search (works in both normal/visual mode)
-" nnoremap <leader>cf :CtrlPag<cr>
-" vnoremap <leader>cf :CtrlPagVisual<cr>
-" " Press <leader>ca, a prompt opened to ask you what to search
-" nnoremap <leader>ca :CtrlPagLocate
+nnoremap <leader>cf :CtrlPag<cr>
+vnoremap <leader>cf :CtrlPagVisual<cr>
+" Press <leader>ca, a prompt opened to ask you what to search
+nnoremap <leader>ca :CtrlPagLocate
 " " Press <leader>cp, to redo the last ag search in CtrlP
 " nnoremap <leader>cp :CtrlPagPrevious<cr>
 let g:ctrlp_ag_ignores = '--ignore .git
@@ -832,19 +839,27 @@ let g:ctrlp_ag_ignores = '--ignore .git
 
 " }
 "
-" ivalkeen/vim-ctrlp-tjump{
-nnoremap <c-]> :CtrlPtjump<cr>
-" nnoremap <c-[> :CtrlPtjump<cr> "this conflicts with <esc>"
-vnoremap <c-]> :CtrlPtjumpVisual<cr>
-" vnoremap <c-[> :CtrlPtjumpVisual<cr>"this conflicts with <esc>"
-" CtrlPtjump - go to declaration of the identifier supplied as an argument, if not use the word under cursor
-" CtrlPtjumpVisual - go to declaration of the visual selected text"
-" If there is only one tag found, it is possible to open it without opening CtrlP window:
-let g:ctrlp_tjump_only_silent = 1
-" }
+""""""""""""""""""""""""""""""""
+"  " ivalkeen/vim-ctrlp-tjump begin "
+""""""""""""""""""""""""""""""""
+" {
 
-""}
-"latex stuff{
+" CtrlPtjump - go to declaration of the identifier supplied as an argument, if not use the word under cursor
+nnoremap <c-]> :CtrlPtjump<cr>
+"nnoremap <c-[> :CtrlPtjump<cr> "this conflicts with <esc>"
+"CtrlPtjumpVisual - go to declaration of the visual selected text"
+vnoremap <c-]> :CtrlPtjumpVisual<cr>
+"vnoremap <c-[> :CtrlPtjumpVisual<cr>"this conflicts with <esc>"
+ " If there is only one tag found, it is possible to open it without opening CtrlP window:
+let g:ctrlp_tjump_only_silent = 1
+" ivalkeen/vim-ctrlp-tjump end "}
+
+""ag and ctrlp to find and search-}
+
+""""""""""""""""""""
+"  "latex stuff{
+""""""""""""""""""""
+
 set grepprg="grep\ -nH\ $*"
 " indentation for tex files
 " autocmd BufRead,BufNewFile *.sty setl filetype=tex

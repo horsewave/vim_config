@@ -33,7 +33,6 @@ inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
 inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
 inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
 inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
-inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
 inoremap <buffer> <silent> î :call AutoPairsJump()a
 inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
 inoremap <buffer> <silent> â =AutoPairsBackInsert()
@@ -113,21 +112,6 @@ xmap <buffer> <nowait> <silent> tsd <Plug>(vimtex-delim-toggle-modifier)
 nmap <buffer> <nowait> <silent> tsd <Plug>(vimtex-delim-toggle-modifier)
 nmap <buffer> <nowait> <silent> tsc <Plug>(vimtex-cmd-toggle-star)
 nmap <buffer> <nowait> <silent> tse <Plug>(vimtex-env-toggle-star)
-nnoremap <buffer> <SNR>169_(v) v
-nnoremap <buffer> <SNR>169_(V) V
-xnoremap <buffer> <silent> <SNR>169_(vimtex-%) :call vimtex#motion#find_matching_pair(1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-]]) :call vimtex#motion#section(0,0,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-][) :call vimtex#motion#section(1,0,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-[]) :call vimtex#motion#section(1,1,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-[[) :call vimtex#motion#section(0,1,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-]m) :call vimtex#motion#environment(1,0,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-]M) :call vimtex#motion#environment(0,0,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-[m) :call vimtex#motion#environment(1,1,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-[M) :call vimtex#motion#environment(0,1,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-]/) :call vimtex#motion#comment(1,0,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-]*) :call vimtex#motion#comment(0,0,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-[/) :call vimtex#motion#comment(1,1,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-[*) :call vimtex#motion#comment(0,1,1)
 xmap <buffer> <nowait> <silent> <F7> <Plug>(vimtex-cmd-create)
 nmap <buffer> <nowait> <silent> <F7> <Plug>(vimtex-cmd-create)
 nnoremap <buffer> <Plug>(vimtex-view) :call b:vimtex.viewer.view('')
@@ -325,9 +309,9 @@ setlocal foldcolumn=5
 setlocal foldenable
 setlocal foldexpr=vimtex#fold#level(v:lnum)
 setlocal foldignore=#
-setlocal foldlevel=0
+setlocal foldlevel=2
 setlocal foldmarker={{{,}}}
-setlocal foldmethod=syntax
+setlocal foldmethod=manual
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=vimtex#fold#text()
@@ -336,8 +320,8 @@ setlocal formatoptions=tcqj
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatprg=
 setlocal grepprg=
-setlocal iminsert=0
-setlocal imsearch=0
+setlocal iminsert=2
+setlocal imsearch=2
 setlocal include=\\v^\\s*\\%\\s*!?\\s*[tT][eE][xX]\\s+[rR][oO][oO][tT]\\s*\\=\\s*\\zs.*\\ze\\s*$|\\v^\\s*%(\\v\\\\%(input|include|subfile)\\s*\\{|\\v\\\\%(sub)?%(import|%(input|include)from)\\*?\\{[^\\}]*\\}\\{)\\zs[^\\}]*\\ze\\}?|\\v\\\\%(usepackage|RequirePackage)%(\\s*\\[[^]]*\\])?\\s*\\{\\zs[^}]*\\ze\\}
 setlocal includeexpr=vimtex#include#expr()
 setlocal indentexpr=VimtexIndentExpr()
@@ -394,15 +378,30 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-38
-normal! zo
-41
-normal! zo
-let s:l = 72 - ((14 * winheight(0) + 10) / 21)
+silent! normal! zE
+22,23fold
+2,42fold
+50,53fold
+191,192fold
+199,203fold
+230,232fold
+322,325fold
+329,332fold
+413,415fold
+453,455fold
+465,467fold
+514,516fold
+523,525fold
+529,532fold
+545,547fold
+652,654fold
+699,700fold
+43,728fold
+let s:l = 728 - ((0 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-72
+728
 normal! 0
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost

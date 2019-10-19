@@ -3,18 +3,17 @@ argglobal
 let s:cpo_save=&cpo
 set cpo&vim
 inoremap <buffer> <silent> <BS> =AutoPairsDelete()
-inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
-inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
-inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
 inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
-inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
-inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
-inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
-inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
-inoremap <buffer> <silent> å =AutoPairsFastWrap()
-inoremap <buffer> <silent> â =AutoPairsBackInsert()
-inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
+inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
+inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
+inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
 inoremap <buffer> <silent> î :call AutoPairsJump()a
+inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
+inoremap <buffer> <silent> â =AutoPairsBackInsert()
+inoremap <buffer> <silent> å =AutoPairsFastWrap()
+inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
+inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
+inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
 inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
 inoremap <buffer> <silent>  =AutoPairsDelete()
 inoremap <buffer> <silent>   =AutoPairsSpace()
@@ -22,8 +21,8 @@ inoremap <buffer> <silent> " =AutoPairsInsert('"')
 inoremap <buffer> <silent> ' =AutoPairsInsert('''')
 inoremap <buffer> <silent> ( =AutoPairsInsert('(')
 inoremap <buffer> <silent> ) =AutoPairsInsert(')')
-noremap <buffer> <silent> ð :call AutoPairsToggle()
 noremap <buffer> <silent> î :call AutoPairsJump()
+noremap <buffer> <silent> ð :call AutoPairsToggle()
 inoremap <buffer> <silent> [ =AutoPairsInsert('[')
 inoremap <buffer> <silent> ] =AutoPairsInsert(']')
 inoremap <buffer> <silent> ` =AutoPairsInsert('`')
@@ -42,7 +41,7 @@ setlocal breakindentopt=
 setlocal bufhidden=
 setlocal buflisted
 setlocal buftype=
-setlocal cindent
+setlocal nocindent
 setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
@@ -63,18 +62,18 @@ setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
-setlocal expandtab
-if &filetype != 'sh'
-setlocal filetype=sh
+setlocal noexpandtab
+if &filetype != 'snippets'
+setlocal filetype=snippets
 endif
 setlocal fixendofline
 setlocal foldcolumn=5
 setlocal foldenable
 setlocal foldexpr=0
 setlocal foldignore=#
-setlocal foldlevel=0
+setlocal foldlevel=99
 setlocal foldmarker={{{,}}}
-setlocal foldmethod=syntax
+setlocal foldmethod=manual
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
@@ -83,12 +82,12 @@ setlocal formatoptions=tcqj
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatprg=
 setlocal grepprg=
-setlocal iminsert=0
-setlocal imsearch=0
+setlocal iminsert=2
+setlocal imsearch=2
 setlocal include=
 setlocal includeexpr=
-setlocal indentexpr=GetShIndent()
-setlocal indentkeys=0{,0},!^F,o,O,e,0=then,0=do,0=else,0=elif,0=fi,0=esac,0=done,0=end,),0=;;,0=;&,0=fin,0=fil,0=fip,0=fir,0=fix
+setlocal indentexpr=
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
@@ -127,13 +126,13 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'sh'
-setlocal syntax=sh
+if &syntax != 'snippets'
+setlocal syntax=snippets
 endif
 setlocal tabstop=2
 setlocal tagcase=
-setlocal tags=
-setlocal textwidth=79
+setlocal tags=~/.vim/tags,tags
+setlocal textwidth=0
 setlocal thesaurus=
 setlocal undofile
 setlocal undolevels=-123456
@@ -141,12 +140,133 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 150 - ((16 * winheight(0) + 10) / 21)
+silent! normal! zE
+1,17fold
+20,56fold
+60,64fold
+67,69fold
+71,80fold
+82,89fold
+91,95fold
+97,101fold
+103,107fold
+109,111fold
+113,115fold
+117,119fold
+121,123fold
+127,129fold
+131,133fold
+136,138fold
+140,147fold
+149,153fold
+155,159fold
+163,165fold
+167,169fold
+172,174fold
+178,190fold
+193,195fold
+198,200fold
+203,205fold
+208,217fold
+220,222fold
+225,232fold
+234,236fold
+238,240fold
+243,245fold
+248,250fold
+252,254fold
+256,258fold
+261,263fold
+265,267fold
+269,271fold
+273,275fold
+277,279fold
+281,283fold
+285,287fold
+289,291fold
+294,296fold
+298,300fold
+302,304fold
+306,308fold
+310,312fold
+314,316fold
+318,320fold
+323,325fold
+328,330fold
+333,335fold
+338,340fold
+343,345fold
+347,349fold
+351,353fold
+355,357fold
+359,361fold
+363,365fold
+368,370fold
+373,375fold
+378,380fold
+383,385fold
+389,391fold
+394,396fold
+399,401fold
+404,406fold
+409,411fold
+414,416fold
+418,420fold
+422,437fold
+439,442fold
+445,447fold
+449,451fold
+454,456fold
+459,461fold
+464,466fold
+469,471fold
+475,477fold
+481,483fold
+487,489fold
+494,496fold
+500,502fold
+505,507fold
+510,512fold
+515,517fold
+520,522fold
+524,526fold
+528,530fold
+533,535fold
+538,540fold
+542,544fold
+548,550fold
+552,554fold
+557,559fold
+561,563fold
+565,567fold
+569,571fold
+573,575fold
+577,579fold
+581,583fold
+585,587fold
+589,591fold
+593,595fold
+597,599fold
+601,603fold
+607,609fold
+612,614fold
+617,621fold
+623,625fold
+627,632fold
+634,636fold
+640,642fold
+646,648fold
+652,654fold
+658,660fold
+662,664fold
+667,669fold
+671,673fold
+let s:l = 20 - ((13 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-150
-normal! 046|
+20
+normal! 0
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :
