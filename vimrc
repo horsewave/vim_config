@@ -82,7 +82,7 @@ Plugin 'rking/ag.vim'
 Plugin 'kien/ctrlp.vim'
 
 " " Plugin 'vim-latex/vim-latex'
-Plugin 'KeitaNakamura/tex-conceal.vim'
+" Plugin 'KeitaNakamura/tex-conceal.vim'
 Plugin 'lervag/vimtex'
 "new added plugins for latex:{
 "from:https://ankursinha.in/2017/09/19/writing-latex-well-in-vim.html"
@@ -163,8 +163,8 @@ set autoread
 set hidden
 
 " Enable conceal
-set conceallevel=2
-set concealcursor=nc
+" set conceallevel=2
+" set concealcursor=nc
 
 " set backspace working 
 set bs=2
@@ -270,8 +270,8 @@ au BufRead,BufNewFile *  setfiletype txt
 
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
+
 " 自适应不同语言的智能缩进
- 
 filetype indent on
 
 "共享剪贴板  
@@ -880,10 +880,12 @@ autocmd FileType tex,markdown,rst,mail,markdown setl spell spelllang=en_gb
 autocmd FileType tex,markdown,rst,mail,markdown setl linebreak
 " tex-conceal.vim{
  
-let g:tex_conceal="abdgm"
-let g:tex_conceal="abdgm"
+" disable latex conceal,sometimes conceal is annoying
+let g:tex_conceal=""
+"let g:tex_conceal="abdgm"
 let g:tex_fold_enabled=1
-set conceallevel=2
+set conceallevel=0
+
 "}
 
 ""--------vimtex plugin---------------------
@@ -1042,10 +1044,6 @@ set number relativenumber
 " YouCompleteMe{
 " This option controls the number of characters the user needs to type before identifier-based completion suggestions are triggered.
 let g:ycm_min_num_of_chars_for_completion = 2
-
-
-
-
 
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_autoclose_preview_window_after_completion=1
