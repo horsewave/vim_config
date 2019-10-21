@@ -3,20 +3,20 @@ argglobal
 let s:cpo_save=&cpo
 set cpo&vim
 inoremap <buffer> <silent> <BS> =AutoPairsDelete()
-nmap <buffer> <silent> ;PN :set pastei=protodef#ReturnSkeletonsFromPrototypesForCurrentBuffer({'includeNS' : 0})='[:set nopaste
 nmap <buffer> <silent> ;PP :set pastei=protodef#ReturnSkeletonsFromPrototypesForCurrentBuffer({})='[:set nopaste
-inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
-inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
-inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
+nmap <buffer> <silent> ;PN :set pastei=protodef#ReturnSkeletonsFromPrototypesForCurrentBuffer({'includeNS' : 0})='[:set nopaste
 inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
+inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
+inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
+inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
 inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
-inoremap <buffer> <silent> î :call AutoPairsJump()a
-inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
-inoremap <buffer> <silent> â =AutoPairsBackInsert()
-inoremap <buffer> <silent> å =AutoPairsFastWrap()
-inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
-inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
 inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
+inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
+inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
+inoremap <buffer> <silent> å =AutoPairsFastWrap()
+inoremap <buffer> <silent> â =AutoPairsBackInsert()
+inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
+inoremap <buffer> <silent> î :call AutoPairsJump()a
 inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
 map <buffer> <F5> :w:make
 inoremap <buffer> <silent>  =AutoPairsDelete()
@@ -25,8 +25,8 @@ inoremap <buffer> <silent> " =AutoPairsInsert('"')
 inoremap <buffer> <silent> ' =AutoPairsInsert('''')
 inoremap <buffer> <silent> ( =AutoPairsInsert('(')
 inoremap <buffer> <silent> ) =AutoPairsInsert(')')
-noremap <buffer> <silent> î :call AutoPairsJump()
 noremap <buffer> <silent> ð :call AutoPairsToggle()
+noremap <buffer> <silent> î :call AutoPairsJump()
 inoremap <buffer> <silent> [ =AutoPairsInsert('[')
 inoremap <buffer> <silent> ] =AutoPairsInsert(']')
 inoremap <buffer> <silent> ` =AutoPairsInsert('`')
@@ -148,50 +148,50 @@ silent! normal! zE
 1,30fold
 40,50fold
 54,63fold
-66,69fold
-78,91fold
-73,100fold
-157,160fold
-135,168fold
-177,184fold
-186,193fold
-221,224fold
-254,257fold
-106,305fold
-316,342fold
-349,382fold
-385,416fold
-426,451fold
-457,484fold
-490,529fold
-534,599fold
-621,625fold
-627,631fold
-602,633fold
-40
+65,68fold
+75,88fold
+70,92fold
+149,152fold
+127,160fold
+169,176fold
+178,185fold
+213,216fold
+246,249fold
+98,297fold
+308,334fold
+341,374fold
+377,408fold
+418,443fold
+449,476fold
+482,521fold
+526,591fold
+613,617fold
+619,623fold
+594,625fold
+65
 normal! zo
-73
+70
 normal! zo
-73
+70
 normal! zc
-106
+98
 normal! zo
-135
+127
 normal! zo
-135
+127
 normal! zc
-106
+98
 normal! zc
-602
+594
 normal! zo
-602
+594
 normal! zc
-let s:l = 312 - ((311 * winheight(0) + 28) / 56)
+let s:l = 74 - ((38 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-312
-normal! 040|
+74
+normal! 0
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

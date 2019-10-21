@@ -1,3 +1,4 @@
+" 
 " 关闭兼容模式
 set nocompatible
 " Plugins managed by vundle begein{
@@ -369,13 +370,14 @@ nmap <Leader>nw  :tabedit %<CR>
 " cool!
 " Python
 autocmd BufNewFile *.py 0r ~/.vim/file-templates/py.vim
-" Fedora review
-autocmd BufNewFile *.fedreview 0r ~/.vim/file-templates/fedreview.vim
-" GNUPlot
-autocmd BufNewFile,BufRead *.plt,.gnuplot setf gnuplot
-autocmd BufNewFile *.plt,.gnuplot 0r ~/.vim/file-templates/gnuplot.vim
 " Shell scripts
 autocmd BufNewFile *.sh 0r ~/.vim/file-templates/sh.vim
+" latex macros
+autocmd BufNewFile *.tex 0r ~/.vim/file-templates/tex.vim
+" cpp
+autocmd BufNewFile *.h 0r ~/.vim/file-templates/cpp.vim
+" root 
+autocmd BufNewFile *.C 0r ~/.vim/file-templates/root.vim
 
 " Save and automatically load folds
 " You need to make a ~/.vim/views folder and chmod it to 755
@@ -388,6 +390,7 @@ autocmd BufWinEnter *.* silent! loadview
 "  " quickfix模式{
   "
 """"""""""""""""""""
+
 
 autocmd FileType c,cpp,cu,py map <buffer> <F5> :w<cr>:make<cr>
 " :cc                显示详细错误信息 ( :help :cc )
@@ -896,7 +899,7 @@ let g:vimtex_view_method='zathura'
 "don't show quickfix error messages
 let g:vimtex_quickfix_mode=0
 
-
+"xelatex is better for chinese support
 let g:vimtex_compiler_latexmk = {
             \ 'backend' : 'jobs',
             \ 'background' : 1,
@@ -908,7 +911,7 @@ let g:vimtex_compiler_latexmk = {
             \   '-pdf',
             \   '-verbose',
             \   '-recorder',
-            \   '-pdflatex="pdflatex"',
+            \   '-pdflatex="xelatex"',
             \   '--shell-escape',
             \   '-use-make',
             \   '-bibtex',
@@ -1048,8 +1051,10 @@ let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_key_list_select_completion = ['<C-n>']
 let g:ycm_key_list_previous_completion = ['<C-p>']
-
+"
 let g:SuperTabDefaultCompletionType = '<C-n>'
+"
+
 
 " }
 "

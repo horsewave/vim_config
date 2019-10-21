@@ -2,6 +2,7 @@ let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
+inoremap <buffer> <nowait> <silent> <S-Tab> =UltiSnips#JumpBackwards()
 inoremap <buffer> <silent> <BS> =AutoPairsDelete()
 imap <buffer> <nowait> <silent> <F7> <Plug>(vimtex-cmd-create)
 inoremap <buffer> <silent> <Plug>(vimtex-delim-close) =vimtex#delim#close()
@@ -113,21 +114,37 @@ xmap <buffer> <nowait> <silent> tsd <Plug>(vimtex-delim-toggle-modifier)
 nmap <buffer> <nowait> <silent> tsd <Plug>(vimtex-delim-toggle-modifier)
 nmap <buffer> <nowait> <silent> tsc <Plug>(vimtex-cmd-toggle-star)
 nmap <buffer> <nowait> <silent> tse <Plug>(vimtex-env-toggle-star)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-[*) :call vimtex#motion#comment(0,1,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-[/) :call vimtex#motion#comment(1,1,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-]*) :call vimtex#motion#comment(0,0,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-]/) :call vimtex#motion#comment(1,0,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-[M) :call vimtex#motion#environment(0,1,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-[m) :call vimtex#motion#environment(1,1,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-]M) :call vimtex#motion#environment(0,0,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-]m) :call vimtex#motion#environment(1,0,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-[[) :call vimtex#motion#section(0,1,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-[]) :call vimtex#motion#section(1,1,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-][) :call vimtex#motion#section(1,0,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-]]) :call vimtex#motion#section(0,0,1)
-xnoremap <buffer> <silent> <SNR>169_(vimtex-%) :call vimtex#motion#find_matching_pair(1)
-nnoremap <buffer> <SNR>169_(V) V
-nnoremap <buffer> <SNR>169_(v) v
+snoremap <buffer> <nowait> <silent> <S-Tab> :call UltiSnips#JumpBackwards()
+nnoremap <buffer> <SNR>238_(v) v
+nnoremap <buffer> <SNR>238_(V) V
+xnoremap <buffer> <silent> <SNR>238_(vimtex-%) :call vimtex#motion#find_matching_pair(1)
+xnoremap <buffer> <silent> <SNR>238_(vimtex-]]) :call vimtex#motion#section(0,0,1)
+xnoremap <buffer> <silent> <SNR>238_(vimtex-][) :call vimtex#motion#section(1,0,1)
+xnoremap <buffer> <silent> <SNR>238_(vimtex-[]) :call vimtex#motion#section(1,1,1)
+xnoremap <buffer> <silent> <SNR>238_(vimtex-[[) :call vimtex#motion#section(0,1,1)
+xnoremap <buffer> <silent> <SNR>238_(vimtex-]m) :call vimtex#motion#environment(1,0,1)
+xnoremap <buffer> <silent> <SNR>238_(vimtex-]M) :call vimtex#motion#environment(0,0,1)
+xnoremap <buffer> <silent> <SNR>238_(vimtex-[m) :call vimtex#motion#environment(1,1,1)
+xnoremap <buffer> <silent> <SNR>238_(vimtex-[M) :call vimtex#motion#environment(0,1,1)
+xnoremap <buffer> <silent> <SNR>238_(vimtex-]/) :call vimtex#motion#comment(1,0,1)
+xnoremap <buffer> <silent> <SNR>238_(vimtex-]*) :call vimtex#motion#comment(0,0,1)
+xnoremap <buffer> <silent> <SNR>238_(vimtex-[/) :call vimtex#motion#comment(1,1,1)
+xnoremap <buffer> <silent> <SNR>238_(vimtex-[*) :call vimtex#motion#comment(0,1,1)
+nnoremap <buffer> <SNR>194_(v) v
+nnoremap <buffer> <SNR>194_(V) V
+xnoremap <buffer> <silent> <SNR>194_(vimtex-%) :call vimtex#motion#find_matching_pair(1)
+xnoremap <buffer> <silent> <SNR>194_(vimtex-]]) :call vimtex#motion#section(0,0,1)
+xnoremap <buffer> <silent> <SNR>194_(vimtex-][) :call vimtex#motion#section(1,0,1)
+xnoremap <buffer> <silent> <SNR>194_(vimtex-[]) :call vimtex#motion#section(1,1,1)
+xnoremap <buffer> <silent> <SNR>194_(vimtex-[[) :call vimtex#motion#section(0,1,1)
+xnoremap <buffer> <silent> <SNR>194_(vimtex-]m) :call vimtex#motion#environment(1,0,1)
+xnoremap <buffer> <silent> <SNR>194_(vimtex-]M) :call vimtex#motion#environment(0,0,1)
+xnoremap <buffer> <silent> <SNR>194_(vimtex-[m) :call vimtex#motion#environment(1,1,1)
+xnoremap <buffer> <silent> <SNR>194_(vimtex-[M) :call vimtex#motion#environment(0,1,1)
+xnoremap <buffer> <silent> <SNR>194_(vimtex-]/) :call vimtex#motion#comment(1,0,1)
+xnoremap <buffer> <silent> <SNR>194_(vimtex-]*) :call vimtex#motion#comment(0,0,1)
+xnoremap <buffer> <silent> <SNR>194_(vimtex-[/) :call vimtex#motion#comment(1,1,1)
+xnoremap <buffer> <silent> <SNR>194_(vimtex-[*) :call vimtex#motion#comment(0,1,1)
 xmap <buffer> <nowait> <silent> <F7> <Plug>(vimtex-cmd-create)
 nmap <buffer> <nowait> <silent> <F7> <Plug>(vimtex-cmd-create)
 nnoremap <buffer> <Plug>(vimtex-view) :call b:vimtex.viewer.view('')
@@ -329,7 +346,7 @@ setlocal foldcolumn=5
 setlocal foldenable
 setlocal foldexpr=vimtex#fold#level(v:lnum)
 setlocal foldignore=#
-setlocal foldlevel=0
+setlocal foldlevel=2
 setlocal foldmarker={{{,}}}
 setlocal foldmethod=syntax
 setlocal foldminlines=1
@@ -341,7 +358,7 @@ setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
-setlocal imsearch=0
+setlocal imsearch=2
 setlocal include=\\v^\\s*\\%\\s*!?\\s*[tT][eE][xX]\\s+[rR][oO][oO][tT]\\s*\\=\\s*\\zs.*\\ze\\s*$|\\v^\\s*%(\\v\\\\%(input|include|subfile)\\s*\\{|\\v\\\\%(sub)?%(import|%(input|include)from)\\*?\\{[^\\}]*\\}\\{)\\zs[^\\}]*\\ze\\}?|\\v\\\\%(usepackage|RequirePackage)%(\\s*\\[[^]]*\\])?\\s*\\{\\zs[^}]*\\ze\\}
 setlocal includeexpr=vimtex#include#expr()
 setlocal indentexpr=VimtexIndentExpr()
@@ -398,16 +415,14 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-38
+34
 normal! zo
-41
-normal! zo
-let s:l = 68 - ((24 * winheight(0) + 20) / 41)
+let s:l = 42 - ((29 * winheight(0) + 20) / 40)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-68
-normal! 017|
+42
+normal! 0
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :
