@@ -17,7 +17,7 @@ def math():
 		return False
 endglobal
 
-snippet la_temp-art "Basic template" b
+snippet la "Basic template" b
 
 \documentclass[a4paper]{article}
 
@@ -53,81 +53,7 @@ $0
 
 \end{document}
 
-
 endsnippet
-
-
-
-snippet beg "begin{} / end{}" bA
-\\begin{$1}
-	$0
-\\end{$1}
-endsnippet
-
-priority 100
-snippet ... "ldots" iA
-\ldots
-endsnippet
-
-snippet table "Table environment" b
-\begin{table}[${1:htpb}]
-	\centering
-	\caption{${2:caption}}
-	\label{tab:${3:label}}
-	\begin{tabular}{${5:c}}
-	$0${5/((?<=.)c|l|r)|./(?1: & )/g}
-	\end{tabular}
-\end{table}
-endsnippet
-
-snippet fig "Figure environment" b
-\begin{figure}[${1:htpb}]
-	\centering
-	${2:\includegraphics[width=0.8\textwidth]{$3}}
-	\caption{${4:$3}}
-	\label{fig:${5:${3/\W+/-/g}}}
-\end{figure}
-endsnippet
-
-snippet enum "Enumerate" b
-\begin{enumerate}
-	\item $0
-\end{enumerate}
-endsnippet
-
-snippet eitem "Itemize" b
-\begin{itemize}
-	\item $0
-\end{itemize}
-endsnippet
-
-snippet item "\item" b
-	\item $1
-endsnippet
-
-
-snippet desc "Description" b
-\begin{description}
-	\item[$1] $0
-\end{description}
-endsnippet
-
-snippet pac "Package" b
-\usepackage[${1:options}]{${2:package}}$0
-endsnippet
-
-snippet fr "red font" 
-{\color{red}${1:${VISUAL}}}
-endsnippet
-
-snippet fg "green font" 
-{\color{green}${1:${VISUAL}}}
-endsnippet
-
-snippet fb "blue font" 
-{\color{green}${1:${VISUAL}}}
-endsnippet
-
 
 
 snippet => "implies" Ai
@@ -138,6 +64,7 @@ snippet =< "implied by" Ai
 \impliedby
 endsnippet
 
+# math contex begin {{{
 context "math()"
 snippet iff "iff" Ai
 \iff
@@ -678,4 +605,112 @@ snippet DD "D" iA
 \mathbb{D}
 endsnippet
 
-# vim:ft=snippets
+# math contex end } 
+# math contex end }}} 
+
+
+snippet beg "begin{} / end{}" bA
+\\begin{$1}
+	$0
+\\end{$1}
+endsnippet
+
+priority 100
+snippet ... "ldots" iA
+\ldots
+endsnippet
+
+snippet eta "Table environment" b
+\begin{table}[${1:htpb}]
+	\centering
+	\caption{${2:caption}}
+	\label{tab:${3:label}}
+	\begin{tabular}{${5:c}}
+	$0${5/((?<=.)c|l|r)|./(?1: & )/g}
+	\end{tabular}
+\end{table}
+endsnippet
+
+snippet efi "Figure environment" b
+\begin{figure}[${1:htpb}]
+	\centering
+	${2:\includegraphics[width=0.8\textwidth]{$3}}
+	\caption{${4:$3}}
+	\label{fig:${5:${3/\W+/-/g}}}
+\end{figure}
+endsnippet
+
+snippet enu "Enumerate" b
+\begin{enumerate}
+	\item $0
+\end{enumerate}
+endsnippet
+
+snippet eit "Itemize" b
+\begin{itemize}
+	\item $0
+\end{itemize}
+endsnippet
+
+snippet item "\item" b
+	\item $0
+endsnippet
+
+snippet eve "verbatim environment" b
+\begin{verbatim}
+	${1:${VISUAL}}
+\end{verbatim}
+$0
+endsnippet
+
+
+snippet ede "Description" b
+\begin{description}
+	\item[$1] $0
+\end{description}
+endsnippet
+
+snippet pac "Package" b
+\usepackage[${1:options}]{${2:package}}$0
+endsnippet
+
+snippet cf "color font" 
+{\color {${1:red}} ${2:${VISUAL}}} $0
+endsnippet
+
+snippet cb "color box" 
+{\color {${1:yellow}} {${2:${VISUAL}}}}
+endsnippet
+
+snippet fb "frame box" b
+% \noindent\fbox{%
+\fbox{
+	\begin{minipage}{\textwidth}
+	${1:${VISUAL}}
+	\end{minipage}
+}
+$0
+endsnippet
+
+snippet fcb "frame color box" b
+\fcolorbox{red}{yellow}{%
+	\begin{minipage}{\textwidth}
+	${1:${VISUAL}}
+	\end{minipage}
+}
+$0
+endsnippet
+
+snippet eli "code listing" b
+\begin{lstlisting}
+	${1:${VISUAL}}
+\end{lstlisting}
+$0
+endsnippet
+
+snippet ve "inline verbatim" b
+
+\verb|${1:${VISUAL}}|
+$0
+endsnippet
+

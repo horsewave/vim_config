@@ -1,0 +1,740 @@
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+argglobal
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <buffer> <silent> <BS> =AutoPairsDelete()
+nmap <buffer> <silent> ;PP :set pastei=protodef#ReturnSkeletonsFromPrototypesForCurrentBuffer({})='[:set nopaste
+nmap <buffer> <silent> ;PN :set pastei=protodef#ReturnSkeletonsFromPrototypesForCurrentBuffer({'includeNS' : 0})='[:set nopaste
+inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
+inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
+inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
+inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
+inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
+inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
+inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
+inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
+inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
+inoremap <buffer> <silent> å =AutoPairsFastWrap()
+inoremap <buffer> <silent> â =AutoPairsBackInsert()
+inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
+inoremap <buffer> <silent> î :call AutoPairsJump()a
+map <buffer> <F5> :w:make
+inoremap <buffer> <silent>  =AutoPairsDelete()
+inoremap <buffer> <silent>   =AutoPairsSpace()
+inoremap <buffer> <silent> " =AutoPairsInsert('"')
+inoremap <buffer> <silent> ' =AutoPairsInsert('''')
+inoremap <buffer> <silent> ( =AutoPairsInsert('(')
+inoremap <buffer> <silent> ) =AutoPairsInsert(')')
+noremap <buffer> <silent> ð :call AutoPairsToggle()
+noremap <buffer> <silent> î :call AutoPairsJump()
+inoremap <buffer> <silent> [ =AutoPairsInsert('[')
+inoremap <buffer> <silent> ] =AutoPairsInsert(']')
+inoremap <buffer> <silent> ` =AutoPairsInsert('`')
+inoremap <buffer> <silent> { =AutoPairsInsert('{')
+inoremap <buffer> <silent> } =AutoPairsInsert('}')
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal noautoindent
+setlocal backupcopy=
+setlocal balloonexpr=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal cindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=inc
+setlocal conceallevel=2
+setlocal completefunc=youcompleteme#CompleteFunc
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal cursorcolumn
+setlocal cursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal noexpandtab
+if &filetype != 'cpp'
+setlocal filetype=cpp
+endif
+setlocal fixendofline
+setlocal foldcolumn=5
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=2
+setlocal foldmarker={,}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=2
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=jcroql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatprg=
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispwords=
+setlocal nolist
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=ccomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal signcolumn=auto
+setlocal smartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%!Pl#Statusline(0,0)
+setlocal suffixesadd=
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'cpp'
+setlocal syntax=cpp
+endif
+setlocal tabstop=2
+setlocal tagcase=
+setlocal tags=
+setlocal textwidth=79
+setlocal thesaurus=
+setlocal undofile
+setlocal undolevels=-123456
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+1,45fold
+59,83fold
+85,116fold
+122,124fold
+133,161fold
+127,163fold
+171,185fold
+189,198fold
+200,203fold
+167,207fold
+212,287fold
+292,360fold
+365,378fold
+404,406fold
+414,417fold
+421,424fold
+428,431fold
+384,435fold
+440,444fold
+491,507fold
+523,528fold
+541,550fold
+554,559fold
+564,567fold
+571,575fold
+577,581fold
+583,587fold
+590,594fold
+597,600fold
+603,606fold
+446,612fold
+616,622fold
+625,629fold
+656,660fold
+662,666fold
+669,673fold
+633,675fold
+703,707fold
+710,714fold
+716,720fold
+681,722fold
+747,751fold
+754,758fold
+760,764fold
+726,766fold
+793,797fold
+800,804fold
+806,810fold
+771,812fold
+834,838fold
+840,844fold
+816,846fold
+872,876fold
+878,882fold
+851,884fold
+886,891fold
+910,916fold
+919,922fold
+925,928fold
+893,932fold
+937,941fold
+986,1002fold
+1018,1023fold
+1037,1039fold
+1043,1047fold
+1049,1053fold
+1055,1059fold
+1062,1066fold
+1069,1072fold
+1075,1078fold
+943,1084fold
+1091,1098fold
+1089,1099fold
+1104,1106fold
+1138,1143fold
+1151,1154fold
+1157,1160fold
+1109,1167fold
+1201,1210fold
+1217,1220fold
+1223,1226fold
+1172,1233fold
+1270,1277fold
+1280,1291fold
+1294,1303fold
+1307,1310fold
+1313,1316fold
+1319,1322fold
+1236,1329fold
+1340,1342fold
+1346,1348fold
+1411,1414fold
+1429,1443fold
+1444,1446fold
+1453,1476fold
+1479,1484fold
+1489,1492fold
+1497,1509fold
+1510,1520fold
+1532,1554fold
+1557,1577fold
+1596,1603fold
+1610,1614fold
+1358,1624fold
+1637,1640fold
+1628,1645fold
+1647,1650fold
+1678,1682fold
+1685,1689fold
+1691,1695fold
+1652,1697fold
+1700,1703fold
+1722,1726fold
+1729,1733fold
+1705,1735fold
+1738,1744fold
+1768,1788fold
+1797,1801fold
+1804,1808fold
+1810,1812fold
+1747,1819fold
+1821,1827fold
+1848,1899fold
+1908,1912fold
+1915,1917fold
+1830,1924fold
+1929,1933fold
+1957,2009fold
+2018,2022fold
+2025,2029fold
+2031,2033fold
+1935,2040fold
+2043,2045fold
+2065,2087fold
+2096,2100fold
+2104,2106fold
+2047,2113fold
+2136,2140fold
+2142,2144fold
+2118,2148fold
+2184,2188fold
+2191,2195fold
+2197,2199fold
+2157,2205fold
+2234,2263fold
+2271,2275fold
+2278,2282fold
+2284,2286fold
+2209,2292fold
+2294,2297fold
+2319,2344fold
+2353,2357fold
+2361,2363fold
+2301,2370fold
+2372,2375fold
+2415,2419fold
+2422,2424fold
+2377,2427fold
+2433,2458fold
+2479,2487fold
+2490,2493fold
+2496,2499fold
+2462,2504fold
+2535,2538fold
+2541,2544fold
+2547,2550fold
+2509,2556fold
+2597,2599fold
+2612,2614fold
+2619,2622fold
+2625,2628fold
+2631,2634fold
+2638,2641fold
+2644,2647fold
+2650,2653fold
+2564,2656fold
+1
+normal! zc
+85
+normal! zc
+127
+normal! zo
+167
+normal! zo
+171
+normal! zc
+189
+normal! zc
+200
+normal! zc
+167
+normal! zc
+212
+normal! zc
+292
+normal! zc
+365
+normal! zc
+384
+normal! zo
+404
+normal! zc
+414
+normal! zc
+421
+normal! zc
+428
+normal! zc
+384
+normal! zc
+440
+normal! zc
+446
+normal! zo
+491
+normal! zc
+523
+normal! zc
+541
+normal! zc
+554
+normal! zc
+564
+normal! zc
+571
+normal! zc
+577
+normal! zc
+583
+normal! zc
+590
+normal! zc
+597
+normal! zc
+603
+normal! zc
+446
+normal! zc
+616
+normal! zc
+625
+normal! zc
+633
+normal! zo
+656
+normal! zc
+662
+normal! zc
+669
+normal! zc
+633
+normal! zc
+681
+normal! zo
+703
+normal! zc
+710
+normal! zc
+716
+normal! zc
+681
+normal! zc
+726
+normal! zo
+747
+normal! zc
+754
+normal! zc
+760
+normal! zc
+726
+normal! zc
+771
+normal! zo
+793
+normal! zc
+800
+normal! zc
+806
+normal! zc
+771
+normal! zc
+816
+normal! zo
+834
+normal! zc
+840
+normal! zc
+816
+normal! zc
+851
+normal! zo
+872
+normal! zc
+878
+normal! zc
+851
+normal! zc
+886
+normal! zc
+893
+normal! zo
+910
+normal! zc
+919
+normal! zc
+925
+normal! zc
+893
+normal! zc
+937
+normal! zc
+943
+normal! zo
+986
+normal! zc
+1018
+normal! zc
+1037
+normal! zc
+1043
+normal! zc
+1049
+normal! zc
+1055
+normal! zc
+1062
+normal! zc
+1069
+normal! zc
+1075
+normal! zc
+943
+normal! zc
+1089
+normal! zo
+1091
+normal! zc
+1089
+normal! zc
+1104
+normal! zc
+1109
+normal! zo
+1138
+normal! zc
+1151
+normal! zc
+1157
+normal! zc
+1109
+normal! zc
+1172
+normal! zo
+1201
+normal! zc
+1217
+normal! zc
+1223
+normal! zc
+1172
+normal! zc
+1236
+normal! zo
+1270
+normal! zc
+1280
+normal! zc
+1294
+normal! zc
+1307
+normal! zc
+1313
+normal! zc
+1319
+normal! zc
+1236
+normal! zc
+1340
+normal! zc
+1346
+normal! zc
+1358
+normal! zo
+1411
+normal! zc
+1429
+normal! zc
+1444
+normal! zc
+1453
+normal! zc
+1479
+normal! zc
+1489
+normal! zc
+1497
+normal! zc
+1510
+normal! zc
+1532
+normal! zc
+1557
+normal! zc
+1596
+normal! zc
+1610
+normal! zc
+1358
+normal! zc
+1628
+normal! zo
+1637
+normal! zc
+1628
+normal! zc
+1647
+normal! zc
+1652
+normal! zo
+1678
+normal! zc
+1685
+normal! zc
+1691
+normal! zc
+1652
+normal! zc
+1700
+normal! zc
+1705
+normal! zo
+1722
+normal! zc
+1729
+normal! zc
+1705
+normal! zc
+1738
+normal! zc
+1747
+normal! zo
+1768
+normal! zc
+1797
+normal! zc
+1804
+normal! zc
+1810
+normal! zc
+1747
+normal! zc
+1821
+normal! zc
+1830
+normal! zo
+1848
+normal! zc
+1908
+normal! zc
+1915
+normal! zc
+1830
+normal! zc
+1929
+normal! zc
+1935
+normal! zo
+1957
+normal! zc
+2018
+normal! zc
+2025
+normal! zc
+2031
+normal! zc
+1935
+normal! zc
+2043
+normal! zc
+2047
+normal! zo
+2065
+normal! zc
+2096
+normal! zc
+2104
+normal! zc
+2047
+normal! zc
+2118
+normal! zo
+2136
+normal! zc
+2142
+normal! zc
+2118
+normal! zc
+2157
+normal! zo
+2184
+normal! zc
+2191
+normal! zc
+2197
+normal! zc
+2157
+normal! zc
+2209
+normal! zo
+2234
+normal! zc
+2271
+normal! zc
+2278
+normal! zc
+2284
+normal! zc
+2209
+normal! zc
+2294
+normal! zc
+2301
+normal! zo
+2319
+normal! zc
+2353
+normal! zc
+2361
+normal! zc
+2301
+normal! zc
+2372
+normal! zc
+2377
+normal! zo
+2415
+normal! zc
+2422
+normal! zc
+2377
+normal! zc
+2433
+normal! zc
+2462
+normal! zo
+2479
+normal! zc
+2490
+normal! zc
+2496
+normal! zc
+2462
+normal! zc
+2509
+normal! zo
+2535
+normal! zc
+2541
+normal! zc
+2547
+normal! zc
+2509
+normal! zc
+2564
+normal! zo
+2597
+normal! zc
+2612
+normal! zc
+2619
+normal! zc
+2625
+normal! zc
+2631
+normal! zc
+2638
+normal! zc
+2644
+normal! zc
+2650
+normal! zc
+2564
+normal! zc
+let s:l = 144 - ((60 * winheight(0) + 23) / 47)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+144
+normal! 0
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+" vim: set ft=vim :

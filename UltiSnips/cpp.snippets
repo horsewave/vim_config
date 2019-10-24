@@ -62,3 +62,48 @@ snippet myinfo
 */
 $0
 endsnippet
+
+snippet doxfi "doxygen file header" b
+/**
+* @file ${1:file.h}
+* @brief ${2:brief}
+* @verbatim
+* ${3:details}
+*@endverbatim
+*
+*@author:${4:Bo Ma}
+*@date:${5:`date +%Y/%m/%d` }
+*Email:mabo@ihep.ac.cn
+*Tel:010-88235869
+*Cell:15210606357
+*@version:${6:v1.0}
+*/
+$0
+endsnippet
+
+
+snippet doxcl "doxygen class/namespace/structure" b
+/**
+* @brief ${1:brief}
+* @detail
+*/
+$0
+endsnippet
+
+snippet doxfu "doxygen function" b
+/** 
+* @brief ${1:brief}
+* @verbatim
+* ${2:details}
+*@endverbatim
+
+* @param[in] ${3:details} : 
+* @param[out] ${4:details} :
+* @return ${5:details} :
+* @retval ${6:details}
+* @deprecated 
+* @see 
+* @pre 
+**/
+$0
+endsnippet

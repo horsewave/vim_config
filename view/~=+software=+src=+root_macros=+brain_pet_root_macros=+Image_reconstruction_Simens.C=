@@ -75,7 +75,7 @@ setlocal foldcolumn=5
 setlocal foldenable
 setlocal foldexpr=0
 setlocal foldignore=#
-setlocal foldlevel=2
+setlocal foldlevel=0
 setlocal foldmarker={{{,}}}
 setlocal foldmethod=syntax
 setlocal foldminlines=1
@@ -113,7 +113,7 @@ setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
-setlocal norelativenumber
+setlocal relativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
 setlocal noscrollbind
@@ -144,14 +144,22 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-90
-normal! zc
-let s:l = 29 - ((7 * winheight(0) + 27) / 55)
+1
+normal! zo
+17
+normal! zo
+26
+normal! zo
+39
+normal! zo
+69
+normal! zo
+let s:l = 30 - ((0 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-29
-normal! 0
+30
+normal! 02|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

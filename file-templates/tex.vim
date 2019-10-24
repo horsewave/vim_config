@@ -8,13 +8,13 @@
 %
 % Version:v1.0
 % ---------------
-%
-% \documentclass[a4paper]{article}
+% for english files
+ \documentclass[a4paper]{article}
 
 %if have chinese,use ctexart
 % \documentclass[a4paper]{ctexart}
 % make the section name on the left, the default is center
-\ctexset{section/format=\Large\bfseries}
+% \ctexset{section/format=\Large\bfseries}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -27,6 +27,17 @@
 \usepackage{xifthen}
 \usepackage{pdfpages}
 \usepackage{transparent}
+
+% code highlighting for c++ ,python,etc..
+\usepackage{listings}
+\lstset{language=C++,
+                basicstyle=\ttfamily\tiny,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{green}\ttfamily,
+                breaklines=true,
+                morecomment=[l][\color{magenta}]{\#}
+}
 
 \title{My title}
 \author{Bo Ma}

@@ -110,7 +110,7 @@ setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
 setlocal noreadonly
-setlocal norelativenumber
+setlocal relativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
 setlocal noscrollbind
@@ -132,7 +132,7 @@ setlocal syntax=snippets
 endif
 setlocal tabstop=2
 setlocal tagcase=
-setlocal tags=~/.vim/tags,tags
+setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
 setlocal undofile
@@ -143,131 +143,338 @@ setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
 1,17fold
-20,57fold
-61,65fold
-68,70fold
-72,81fold
-83,90fold
-92,96fold
-98,103fold
-105,109fold
-111,113fold
-115,117fold
-119,121fold
-123,125fold
-129,131fold
-133,135fold
-138,140fold
-142,149fold
-151,155fold
-157,161fold
-165,167fold
-169,171fold
-174,176fold
-180,192fold
-195,197fold
-200,202fold
-205,207fold
-210,219fold
+20,56fold
+59,61fold
+63,65fold
+69,71fold
+73,80fold
+82,86fold
+88,92fold
+96,98fold
+100,102fold
+105,107fold
+111,123fold
+126,128fold
+131,133fold
+136,138fold
+141,150fold
+153,155fold
+158,165fold
+167,169fold
+171,173fold
+176,178fold
+181,183fold
+185,187fold
+189,191fold
+194,196fold
+198,200fold
+202,204fold
+206,208fold
+210,212fold
+214,216fold
+218,220fold
 222,224fold
-227,234fold
-236,238fold
-240,242fold
-245,247fold
-250,252fold
-254,256fold
-258,260fold
-263,265fold
-267,269fold
+227,229fold
+231,233fold
+235,237fold
+239,241fold
+243,245fold
+247,249fold
+251,253fold
+256,258fold
+261,263fold
+266,268fold
 271,273fold
-275,277fold
-279,281fold
-283,285fold
-287,289fold
-291,293fold
+276,278fold
+280,282fold
+284,286fold
+288,290fold
+292,294fold
 296,298fold
-300,302fold
-304,306fold
-308,310fold
-312,314fold
+301,303fold
+306,308fold
+311,313fold
 316,318fold
-320,322fold
-325,327fold
-330,332fold
-335,337fold
-340,342fold
-345,347fold
-349,351fold
-353,355fold
-357,359fold
-361,363fold
-365,367fold
-370,372fold
-375,377fold
-380,382fold
-385,387fold
-391,393fold
-396,398fold
-401,403fold
-406,408fold
-411,413fold
-416,418fold
+322,324fold
+327,329fold
+332,334fold
+337,339fold
+342,344fold
+347,349fold
+351,353fold
+355,370fold
+372,375fold
+378,380fold
+382,384fold
+387,389fold
+392,394fold
+397,399fold
+402,404fold
+408,410fold
+414,416fold
 420,422fold
-424,439fold
-441,444fold
-447,449fold
-451,453fold
-456,458fold
+427,429fold
+433,435fold
+438,440fold
+443,445fold
+448,450fold
+453,455fold
+457,459fold
 461,463fold
 466,468fold
 471,473fold
-477,479fold
-483,485fold
-489,491fold
-496,498fold
+475,477fold
+481,483fold
+485,487fold
+490,492fold
+494,496fold
+498,500fold
 502,504fold
-507,509fold
-512,514fold
-517,519fold
+506,508fold
+510,512fold
+514,516fold
+518,520fold
 522,524fold
 526,528fold
 530,532fold
-535,537fold
+534,536fold
 540,542fold
-544,546fold
-550,552fold
-554,556fold
-559,561fold
-563,565fold
+545,547fold
+550,554fold
+556,558fold
+560,565fold
 567,569fold
-571,573fold
-575,577fold
+573,575fold
 579,581fold
-583,585fold
-587,589fold
+585,587fold
 591,593fold
 595,597fold
-599,601fold
-603,605fold
-609,611fold
-614,616fold
-619,623fold
-625,627fold
-629,634fold
-636,638fold
-642,644fold
-648,650fold
-654,656fold
-660,662fold
-664,666fold
-669,671fold
-673,675fold
-let s:l = 98 - ((26 * winheight(0) + 19) / 39)
+600,602fold
+604,606fold
+1
+normal! zc
+20
+normal! zc
+59
+normal! zc
+63
+normal! zc
+69
+normal! zc
+73
+normal! zc
+82
+normal! zc
+88
+normal! zc
+96
+normal! zc
+100
+normal! zc
+105
+normal! zc
+111
+normal! zc
+126
+normal! zc
+131
+normal! zc
+136
+normal! zc
+141
+normal! zc
+153
+normal! zc
+158
+normal! zc
+167
+normal! zc
+171
+normal! zc
+176
+normal! zc
+181
+normal! zc
+185
+normal! zc
+189
+normal! zc
+194
+normal! zc
+198
+normal! zc
+202
+normal! zc
+206
+normal! zc
+210
+normal! zc
+214
+normal! zc
+218
+normal! zc
+222
+normal! zc
+227
+normal! zc
+231
+normal! zc
+235
+normal! zc
+239
+normal! zc
+243
+normal! zc
+247
+normal! zc
+251
+normal! zc
+256
+normal! zc
+261
+normal! zc
+266
+normal! zc
+271
+normal! zc
+276
+normal! zc
+280
+normal! zc
+284
+normal! zc
+288
+normal! zc
+292
+normal! zc
+296
+normal! zc
+301
+normal! zc
+306
+normal! zc
+311
+normal! zc
+316
+normal! zc
+322
+normal! zc
+327
+normal! zc
+332
+normal! zc
+337
+normal! zc
+342
+normal! zc
+347
+normal! zc
+351
+normal! zc
+355
+normal! zc
+372
+normal! zc
+378
+normal! zc
+382
+normal! zc
+387
+normal! zc
+392
+normal! zc
+397
+normal! zc
+402
+normal! zc
+408
+normal! zc
+414
+normal! zc
+420
+normal! zc
+427
+normal! zc
+433
+normal! zc
+438
+normal! zc
+443
+normal! zc
+448
+normal! zc
+453
+normal! zc
+457
+normal! zc
+461
+normal! zc
+466
+normal! zc
+471
+normal! zc
+475
+normal! zc
+481
+normal! zc
+485
+normal! zc
+490
+normal! zc
+494
+normal! zc
+498
+normal! zc
+502
+normal! zc
+506
+normal! zc
+510
+normal! zc
+514
+normal! zc
+518
+normal! zc
+522
+normal! zc
+526
+normal! zc
+530
+normal! zc
+534
+normal! zc
+540
+normal! zc
+545
+normal! zc
+550
+normal! zc
+556
+normal! zc
+560
+normal! zc
+567
+normal! zc
+573
+normal! zc
+579
+normal! zc
+585
+normal! zc
+591
+normal! zc
+595
+normal! zc
+600
+normal! zc
+604
+normal! zc
+let s:l = 713 - ((34 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-98
-normal! 024|
+713
+normal! 0
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

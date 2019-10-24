@@ -240,7 +240,7 @@ set cursorcolumn
 set mouse=a
 " 在处理未保存或只读文件的时候，弹出确认
 set confirm
-
+set iskeyword=@,48-57,192-255
 
 "置粘贴模式，这样粘贴过来的程序代码就不会错位了。
 set paste
@@ -339,23 +339,27 @@ endif
 "folding files begin {
 
 " Folding in C,CPP files
-autocmd FileType c,cpp,py,tex,sh setl foldenable foldmethod=syntax
-" autocmd BufRead,BufNewFile .vimrc  setl foldenable foldmethod=marker foldmarker={,}
+autocmd FileType c,cpp,tex,sh setl foldenable foldmethod=syntax
+autocmd FileType py setl foldenable foldmethod=indent
+" autocmd BufRead,BufNewFile *.py  setl foldenable foldmethod=indent
 " autocmd FileType vim setl foldenable foldmethod=marker
 " This is for vertical indenting
 " set list
 " set listchars=tab:\|\ ,trail:-,eol:$
 " Folding
-" let &foldmarker='{,}'
-" set foldnestmax=10
+set foldnestmax=2
 let g:markdown_folding = 1
 let g:tex_fold_enabled = 1
 let g:vimsyn_folding = 'af'
-
 set foldenable
+set foldmethod=marker
+set foldmarker={,}
 set foldlevel=2
+
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-nnoremap <silent> <S-Space> @=(foldlevel('.')?'zA':"\<Space>")<CR>
+nnoremap <silent> <S-Space> @=(foldlevel('.')?'zA':"\<S-Space>")<CR>
+nnoremap <silent>  zm zM
+nnoremap <silent>  zr zR
 "Folding
 set foldcolumn=5
 
@@ -964,7 +968,7 @@ let g:vimtex_fold_enabled = 1
 " 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap zuz <Plug>(FastFoldUpdate)
-let g:fastfold_savehook = 1
+let g:fastfold_savehook = 0
 let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
 let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
 

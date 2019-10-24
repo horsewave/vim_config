@@ -1,9 +1,15 @@
-#!/usr/bin/env python3
-"""
-Enter one line description here.
+""" run a batch of ggems using python
 
-File:
-
-Copyright 2019 Ankur Sinha
-Author: Ankur Sinha <sanjay DOT ankur AT gmail DOT com>
+@file change_batch_file_names.py
+@detail :write your Description
+@author Bo Ma
+@date 2019.09.28
+Email:mabo@ihep.ac.cn
+Tel:010-88235869
+Cell:15210606357
+@version 1.0
 """
+
+import subprocess
+import time
+
