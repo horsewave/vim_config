@@ -3,18 +3,18 @@ argglobal
 let s:cpo_save=&cpo
 set cpo&vim
 inoremap <buffer> <silent> <BS> =AutoPairsDelete()
-inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
-inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
-inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
 inoremap <buffer> <silent> § =AutoPairsMoveCharacter('''')
+inoremap <buffer> <silent> ¢ =AutoPairsMoveCharacter('"')
+inoremap <buffer> <silent> © =AutoPairsMoveCharacter(')')
+inoremap <buffer> <silent> ¨ =AutoPairsMoveCharacter('(')
 inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
-inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
-inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
-inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
-inoremap <buffer> <silent> å =AutoPairsFastWrap()
-inoremap <buffer> <silent> â =AutoPairsBackInsert()
-inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
 inoremap <buffer> <silent> î :call AutoPairsJump()a
+inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
+inoremap <buffer> <silent> â =AutoPairsBackInsert()
+inoremap <buffer> <silent> å =AutoPairsFastWrap()
+inoremap <buffer> <silent> ý =AutoPairsMoveCharacter('}')
+inoremap <buffer> <silent> û =AutoPairsMoveCharacter('{')
+inoremap <buffer> <silent> Ý =AutoPairsMoveCharacter(']')
 inoremap <buffer> <silent> Û =AutoPairsMoveCharacter('[')
 inoremap <buffer> <silent>  =AutoPairsDelete()
 inoremap <buffer> <silent>   =AutoPairsSpace()
@@ -22,8 +22,8 @@ inoremap <buffer> <silent> " =AutoPairsInsert('"')
 inoremap <buffer> <silent> ' =AutoPairsInsert('''')
 inoremap <buffer> <silent> ( =AutoPairsInsert('(')
 inoremap <buffer> <silent> ) =AutoPairsInsert(')')
-noremap <buffer> <silent> ð :call AutoPairsToggle()
 noremap <buffer> <silent> î :call AutoPairsJump()
+noremap <buffer> <silent> ð :call AutoPairsToggle()
 inoremap <buffer> <silent> [ =AutoPairsInsert('[')
 inoremap <buffer> <silent> ] =AutoPairsInsert(']')
 inoremap <buffer> <silent> ` =AutoPairsInsert('`')
@@ -146,111 +146,92 @@ silent! normal! zE
 20,56fold
 59,61fold
 63,65fold
-69,71fold
-73,80fold
-82,86fold
-88,92fold
-96,98fold
-100,102fold
+68,70fold
+72,79fold
+91,95fold
+97,101fold
 105,107fold
-111,123fold
-126,128fold
-131,133fold
-136,138fold
-141,150fold
-153,155fold
-158,165fold
-167,169fold
-171,173fold
-176,178fold
-181,183fold
-185,187fold
-189,191fold
-194,196fold
-198,200fold
-202,204fold
-206,208fold
-210,212fold
+109,111fold
+114,116fold
+119,121fold
+123,125fold
+127,129fold
+132,134fold
+137,139fold
+141,143fold
+145,147fold
+150,152fold
+154,156fold
+158,160fold
+162,164fold
+166,168fold
+170,172fold
+174,176fold
+178,180fold
+183,185fold
+187,189fold
+192,194fold
+196,198fold
+200,202fold
+204,206fold
+209,211fold
 214,216fold
-218,220fold
-222,224fold
-227,229fold
-231,233fold
-235,237fold
-239,241fold
-243,245fold
-247,249fold
-251,253fold
+219,221fold
+229,231fold
+240,242fold
+244,246fold
+248,250fold
+252,254fold
 256,258fold
 261,263fold
 266,268fold
 271,273fold
 276,278fold
-280,282fold
-284,286fold
-288,290fold
+282,284fold
+287,289fold
 292,294fold
-296,298fold
-301,303fold
-306,308fold
-311,313fold
-316,318fold
-322,324fold
-327,329fold
-332,334fold
+297,299fold
+302,304fold
+307,309fold
+312,314fold
+318,320fold
+324,326fold
+330,332fold
 337,339fold
-342,344fold
-347,349fold
-351,353fold
-355,370fold
-372,375fold
-378,380fold
-382,384fold
-387,389fold
-392,394fold
-397,399fold
-402,404fold
+343,345fold
+348,350fold
+353,355fold
+358,360fold
+363,365fold
+367,369fold
+371,373fold
+376,378fold
+381,383fold
+385,387fold
+391,393fold
+395,397fold
+400,402fold
+404,406fold
 408,410fold
-414,416fold
+412,414fold
+416,418fold
 420,422fold
-427,429fold
-433,435fold
-438,440fold
-443,445fold
-448,450fold
-453,455fold
-457,459fold
-461,463fold
+424,426fold
+428,430fold
+432,434fold
+436,438fold
+440,442fold
+444,446fold
+450,452fold
+455,457fold
+460,464fold
 466,468fold
-471,473fold
-475,477fold
-481,483fold
-485,487fold
-490,492fold
-494,496fold
-498,500fold
-502,504fold
-506,508fold
-510,512fold
-514,516fold
-518,520fold
-522,524fold
-526,528fold
-530,532fold
-534,536fold
-540,542fold
-545,547fold
-550,554fold
-556,558fold
-560,565fold
-567,569fold
-573,575fold
-579,581fold
-585,587fold
-591,593fold
-595,597fold
-600,602fold
-604,606fold
+470,475fold
+477,479fold
+483,485fold
+489,491fold
+495,497fold
+501,503fold
 1
 normal! zc
 20
@@ -259,75 +240,77 @@ normal! zc
 normal! zc
 63
 normal! zc
-69
+68
 normal! zc
-73
+72
 normal! zc
-82
+91
 normal! zc
-88
-normal! zc
-96
-normal! zc
-100
+97
 normal! zc
 105
 normal! zc
-111
+109
 normal! zc
-126
+114
 normal! zc
-131
+119
 normal! zc
-136
+123
+normal! zc
+127
+normal! zc
+132
+normal! zc
+137
 normal! zc
 141
 normal! zc
-153
+145
+normal! zc
+150
+normal! zc
+154
 normal! zc
 158
 normal! zc
-167
+162
 normal! zc
-171
+166
 normal! zc
-176
+170
 normal! zc
-181
+174
 normal! zc
-185
+178
 normal! zc
-189
+183
 normal! zc
-194
+187
 normal! zc
-198
+192
 normal! zc
-202
+196
 normal! zc
-206
+200
 normal! zc
-210
+204
+normal! zc
+209
 normal! zc
 214
 normal! zc
-218
+219
 normal! zc
-222
+229
 normal! zc
-227
+240
 normal! zc
-231
+244
 normal! zc
-235
+248
 normal! zc
-239
-normal! zc
-243
-normal! zc
-247
-normal! zc
-251
+252
 normal! zc
 256
 normal! zc
@@ -339,142 +322,102 @@ normal! zc
 normal! zc
 276
 normal! zc
-280
+282
 normal! zc
-284
-normal! zc
-288
+287
 normal! zc
 292
 normal! zc
-296
+297
 normal! zc
-301
+302
 normal! zc
-306
+307
 normal! zc
-311
+312
 normal! zc
-316
+318
 normal! zc
-322
+324
 normal! zc
-327
-normal! zc
-332
+330
 normal! zc
 337
 normal! zc
-342
+343
 normal! zc
-347
+348
 normal! zc
-351
+353
 normal! zc
-355
+358
 normal! zc
-372
+363
 normal! zc
-378
+367
 normal! zc
-382
+371
 normal! zc
-387
+376
 normal! zc
-392
+381
 normal! zc
-397
+385
 normal! zc
-402
+391
+normal! zc
+395
+normal! zc
+400
+normal! zc
+404
 normal! zc
 408
 normal! zc
-414
+412
+normal! zc
+416
 normal! zc
 420
 normal! zc
-427
+424
 normal! zc
-433
+428
 normal! zc
-438
+432
 normal! zc
-443
+436
 normal! zc
-448
+440
 normal! zc
-453
+444
 normal! zc
-457
+450
 normal! zc
-461
+455
+normal! zc
+460
 normal! zc
 466
 normal! zc
-471
+470
 normal! zc
-475
+477
 normal! zc
-481
+483
 normal! zc
-485
+489
 normal! zc
-490
+495
 normal! zc
-494
+501
 normal! zc
-498
-normal! zc
-502
-normal! zc
-506
-normal! zc
-510
-normal! zc
-514
-normal! zc
-518
-normal! zc
-522
-normal! zc
-526
-normal! zc
-530
-normal! zc
-534
-normal! zc
-540
-normal! zc
-545
-normal! zc
-550
-normal! zc
-556
-normal! zc
-560
-normal! zc
-567
-normal! zc
-573
-normal! zc
-579
-normal! zc
-585
-normal! zc
-591
-normal! zc
-595
-normal! zc
-600
-normal! zc
-604
-normal! zc
-let s:l = 713 - ((34 * winheight(0) + 20) / 41)
+let s:l = 618 - ((13 * winheight(0) + 10) / 20)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-713
-normal! 0
+618
+normal! 010|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

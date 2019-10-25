@@ -2,6 +2,7 @@ let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
+inoremap <buffer> <nowait> <silent> <S-Tab> =UltiSnips#JumpBackwards()
 inoremap <buffer> <silent> <BS> =AutoPairsDelete()
 imap <buffer> <nowait> <silent> <F7> <Plug>(vimtex-cmd-create)
 inoremap <buffer> <silent> <Plug>(vimtex-delim-close) =vimtex#delim#close()
@@ -113,6 +114,7 @@ xmap <buffer> <nowait> <silent> tsd <Plug>(vimtex-delim-toggle-modifier)
 nmap <buffer> <nowait> <silent> tsd <Plug>(vimtex-delim-toggle-modifier)
 nmap <buffer> <nowait> <silent> tsc <Plug>(vimtex-cmd-toggle-star)
 nmap <buffer> <nowait> <silent> tse <Plug>(vimtex-env-toggle-star)
+snoremap <buffer> <nowait> <silent> <S-Tab> :call UltiSnips#JumpBackwards()
 nnoremap <buffer> <SNR>169_(v) v
 nnoremap <buffer> <SNR>169_(V) V
 xnoremap <buffer> <silent> <SNR>169_(vimtex-%) :call vimtex#motion#find_matching_pair(1)
@@ -210,8 +212,12 @@ inoremap <buffer> <silent> " =AutoPairsInsert('"')
 inoremap <buffer> <silent> ' =AutoPairsInsert('''')
 inoremap <buffer> <silent> ( =AutoPairsInsert('(')
 inoremap <buffer> <silent> ) =AutoPairsInsert(')')
-noremap <buffer> <silent> î :call AutoPairsJump()
-noremap <buffer> <silent> ð :call AutoPairsToggle()
+nnoremap <buffer> <silent> î :call AutoPairsJump()
+xnoremap <buffer> <silent> î :call AutoPairsJump()
+onoremap <buffer> <silent> î :call AutoPairsJump()
+nnoremap <buffer> <silent> ð :call AutoPairsToggle()
+xnoremap <buffer> <silent> ð :call AutoPairsToggle()
+onoremap <buffer> <silent> ð :call AutoPairsToggle()
 inoremap <buffer> <silent> [ =AutoPairsInsert('[')
 inoremap <buffer> <silent> ] =AutoPairsInsert(']')
 imap <buffer> <nowait> <silent> ]] <Plug>(vimtex-delim-close)
@@ -394,16 +400,22 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-38
+1
 normal! zo
-41
+12
 normal! zo
-let s:l = 83 - ((8 * winheight(0) + 9) / 19)
+14
+normal! zo
+42
+normal! zo
+45
+normal! zo
+let s:l = 92 - ((30 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-83
-normal! 015|
+92
+normal! 064|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

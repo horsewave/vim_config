@@ -64,20 +64,29 @@ snippet =< "implied by" Ai
 \impliedby
 endsnippet
 
-# math contex begin {{{
 context "math()"
 snippet iff "iff" Ai
 \iff
 endsnippet
 
-snippet mk "Math" wA
-$${1}$`!p
+snippet ms "Math" wA
+$${1:${VISUAL}}$`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
 	snip.rv = ' '
 else:
 	snip.rv = ''
 `$2
 endsnippet
+
+snippet md "Math" wA
+$$${1:${VISUAL}}$$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+	snip.rv = ' '
+else:
+	snip.rv = ''
+`$2
+endsnippet
+
 
 snippet dm "Math" wA
 \[
@@ -102,27 +111,6 @@ snippet / "Fraction" i
 endsnippet
 
 context "math()"
-snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
-\\frac{`!p snip.rv = match.group(1)`}{$1}$0
-endsnippet
-
-priority 1000
-context "math()"
-snippet '^.*\)/' "() frac" wrA
-`!p
-stripped = match.string[:-1]
-depth = 0
-i = len(stripped) - 1
-while True:
-	if stripped[i] == ')': depth += 1
-	if stripped[i] == '(': depth -= 1
-	if depth == 0: break;
-	i-=1
-snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
-`{$1}$0
-endsnippet
-
-context "math()"
 snippet '([A-Za-z])(\d)' "auto subscript" wrA
 `!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
 endsnippet
@@ -130,38 +118,6 @@ endsnippet
 context "math()"
 snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
-endsnippet
-
-
-snippet sympy "sympyblock " w
-sympy $1 sympy$0
-endsnippet
-
-priority 10000
-snippet 'sympy(.*)sympy' "sympy" wr
-`!p
-from sympy import *
-x, y, z, t = symbols('x y z t')
-k, m, n = symbols('k m n', integer=True)
-f, g, h = symbols('f g h', cls=Function)
-init_printing()
-snip.rv = eval('latex(' + match.group(1).replace('\\', '').replace('^', '**').replace('{', '(').replace('}', ')') + ')')
-`
-endsnippet
-
-priority 1000
-snippet math "mathematicablock" w
-math $1 math$0
-endsnippet
-
-priority 10000
-snippet 'math(.*)math' "math" wr
-`!p
-import subprocess
-code = match.group(1)
-code = 'ToString[' + code + ', TeXForm]'
-snip.rv = subprocess.check_output(['wolframscript', '-code', code])
-`
 endsnippet
 
 snippet == "equals" iA
@@ -232,9 +188,6 @@ snippet sum "sum" w
 \sum_{n=${1:1}}^{${2:\infty}} ${3:a_n z^n}
 endsnippet
 
-snippet taylor "taylor" w
-\sum_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_$1} (x-a)^$1 $0
-endsnippet
 
 snippet lim "limit" w
 \lim_{${1:n} \to ${2:\infty}} 
@@ -253,12 +206,12 @@ snippet part "d/dx" w
 endsnippet
 
 context "math()"
-snippet sq "\sqrt{}" iA
+snippet sr "\sqrt{}" iA
 \sqrt{${1:${VISUAL}}} $0
 endsnippet
 
 context "math()"
-snippet sr "^2" iA
+snippet sq "^2" iA
 ^2
 endsnippet
 
@@ -268,14 +221,21 @@ snippet cb "^3" iA
 endsnippet
 
 context "math()"
-snippet td "to the ... power" iA
+snippet tp "to the ... power" iA
 ^{$1}$0
 endsnippet
 
 context "math()"
-snippet rd "to the ... power" iA
-^{($1)}$0
+snippet dp "to the ... power" iA
+10^{$1}$0
 endsnippet
+
+context "math()"
+snippet ep "to the ... power" iA
+e^{$1}$0
+endsnippet
+
+
 
 snippet __ "subscript" iA
 _{$1}$0
@@ -336,56 +296,6 @@ endsnippet
 context "math()"
 snippet yjj "yj" iA
 y_{j}
-endsnippet
-
-context "math()"
-snippet xp1 "x" iA
-x_{n+1}
-endsnippet
-
-context "math()"
-snippet xmm "x" iA
-x_{m}
-endsnippet
-
-snippet R0+ "R0+" iA
-\\R_0^+
-endsnippet
-
-snippet plot "Plot" w
-\begin{figure}[$1]
-	\centering
-	\begin{tikzpicture}
-		\begin{axis}[
-			xmin= ${2:-10}, xmax= ${3:10},
-			ymin= ${4:-10}, ymax = ${5:10},
-			axis lines = middle,
-		]
-			\addplot[domain=$2:$3, samples=${6:100}]{$7};
-		\end{axis}
-	\end{tikzpicture}
-	\caption{$8}
-	\label{${9:$8}}
-\end{figure}
-endsnippet
-
-snippet nn "Tikz node" w
-\node[$5] (${1/[^0-9a-zA-Z]//g}${2}) ${3:at (${4:0,0}) }{$${1}$};
-$0
-endsnippet
-
-context "math()"
-snippet mcal "mathcal" iA
-\mathcal{$1}$0
-endsnippet
-
-snippet lll "l" iA
-\ell
-endsnippet
-
-context "math()"
-snippet nabl "nabla" iA
-\nabla 
 endsnippet
 
 context "math()"
@@ -592,22 +502,6 @@ snippet "([a-zA-Z])hat" "hat" riA
 \hat{`!p snip.rv=match.group(1)`}
 endsnippet
 
-snippet letw "let omega" iA
-Let $\Omega \subset \C$ be open.
-endsnippet
-
-
-snippet HH "H" iA
-\mathbb{H}
-endsnippet
-
-snippet DD "D" iA
-\mathbb{D}
-endsnippet
-
-# math contex end } 
-# math contex end }}} 
-
 
 snippet beg "begin{} / end{}" bA
 \\begin{$1}
@@ -634,7 +528,8 @@ endsnippet
 snippet efi "Figure environment" b
 \begin{figure}[${1:htpb}]
 	\centering
-	${2:\includegraphics[width=0.8\textwidth]{$3}}
+%	\includegraphics[width=0.8\textwidth,trim=left bottom right top, clip=true]{./figures/}
+	\includegraphics[width=0.8\textwidth,trim=10cm 4cm 5cm 4cm, clip=true]{./figures/$3}
 	\caption{${4:$3}}
 	\label{fig:${5:${3/\W+/-/g}}}
 \end{figure}
@@ -711,6 +606,18 @@ endsnippet
 snippet ve "inline verbatim" b
 
 \verb|${1:${VISUAL}}|
+$0
+endsnippet
+
+snippet ref "\ref" 
+
+\ref{$1}
+$0
+endsnippet
+
+snippet bs "\backslash" 
+
+$\backslash$
 $0
 endsnippet
 

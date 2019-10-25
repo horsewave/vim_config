@@ -130,6 +130,9 @@ Plugin 'ivalkeen/vim-ctrlp-tjump'
 " man pages using vim plugin when available
 Plugin 'jez/vim-superman'
 
+" make rename your current editing file easier.
+Plugin 'vim-scripts/Rename2'
+
 "}" 
 "插件列表结束
 call vundle#end()
@@ -240,7 +243,7 @@ set cursorcolumn
 set mouse=a
 " 在处理未保存或只读文件的时候，弹出确认
 set confirm
-set iskeyword=@,48-57,192-255
+" set iskeyword=@,48-57,192-255
 
 "置粘贴模式，这样粘贴过来的程序代码就不会错位了。
 set paste
